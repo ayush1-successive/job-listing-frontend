@@ -40,7 +40,6 @@ const Profile = () => {
 
   return (
     <Form form={form}>
-
       <Form.Item
         label="Username"
         name="username"
@@ -49,10 +48,7 @@ const Profile = () => {
         <Input disabled={!isEditMode} />
       </Form.Item>
 
-      <Form.Item
-        name="email"
-        label="E-mail"
-      >
+      <Form.Item name="email" label="E-mail">
         <Input disabled={!isEditMode} />
       </Form.Item>
 

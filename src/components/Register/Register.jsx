@@ -30,7 +30,6 @@ const tailFormItemLayout = {
 const Register = () => {
   const [form] = Form.useForm();
 
-  // TODO: Save this in database
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
 

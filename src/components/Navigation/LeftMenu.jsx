@@ -6,10 +6,10 @@ const LeftMenu = ({ mode }) => {
   return (
     <Menu mode={mode}>
       <Menu.Item key="jobs">
-        <Link to="/jobs">Jobs</Link>
+        <Link to="jobs">Jobs</Link>
       </Menu.Item>
       <Menu.Item key="uploads">
-        <Link to="/uploads">Uploads</Link>
+        <Link to="uploads">Uploads</Link>
       </Menu.Item>
     </Menu>
   );

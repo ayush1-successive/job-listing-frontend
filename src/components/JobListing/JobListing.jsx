@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, List, Space, Menu, Layout, theme, Button } from "antd";
+import { Avatar, List, Space, Menu, Layout, theme } from "antd";
 import {
   LikeOutlined,
   MessageOutlined,
@@ -9,7 +9,7 @@ import {
   NotificationOutlined,
   EyeOutlined,
   EditOutlined,
-  DeleteOutlined
+  DeleteOutlined,
 } from "@ant-design/icons";
 import SearchBar from "./SearchBar";
 import { Content, Header } from "antd/es/layout/layout";
@@ -83,13 +83,7 @@ const JobListing = () => {
         <Content style={{ padding: "0 0" }}>
           <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
             <Sider style={{ background: colorBgContainer }} width={200}>
-              <Menu
-                mode="inline"
-                // defaultSelectedKeys={["1"]}
-                // defaultOpenKeys={["sub1"]}
-                style={{ height: "100%" }}
-                items={items2}
-              />
+              <Menu mode="inline" style={{ height: "100%" }} items={items2} />
             </Sider>
             <Content style={{ padding: "0 24px", minHeight: 280 }}>
               <List
