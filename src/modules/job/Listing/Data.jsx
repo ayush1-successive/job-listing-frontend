@@ -1,23 +1,21 @@
-import React from "react";
-
-import { Avatar, List, Space, Menu, Layout, theme } from "antd";
 import {
+  DeleteOutlined,
+  EditOutlined,
+  EyeOutlined,
   LikeOutlined,
   MessageOutlined,
   StarOutlined,
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-  EyeOutlined,
-  EditOutlined,
-  DeleteOutlined,
 } from "@ant-design/icons";
-import { Content } from "antd/es/layout/layout";
+import { Avatar, Layout, List, Menu, Space, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
+import { Content } from "antd/es/layout/layout";
 
-const data = Array.from({
-  length: 23,
-}).map((_, i) => ({
+import React, { useEffect, useState } from "react";
+import { filterTypes } from "./filters";
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+const data = Array.from({ length: 23 }).map((_, i) => ({
   href: "https://ant.design",
   title: `ant design part ${i}`,
   avatar: `https://xsgames.co/randomusers/avatar.php?g=pixel&key=${i}`,
@@ -34,28 +32,10 @@ const IconText = ({ icon, text }) => (
   </Space>
 );
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1);
-
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1;
-        return {
-          key: subKey,
-          label: `option${subKey}`,
-        };
-      }),
-    };
-  }
-);
-
 const ListingData = () => {
   // const [filter, setFilter] = useState({});
+
+  const [jobListing, setJobListing] = useState([]);
 
   const {
     token: { colorBgContainer },
@@ -74,12 +54,35 @@ const ListingData = () => {
     margin: "8px",
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const options = {
+        method: "GET",
+        url: "http://localhost:8080/jobs",
+      };
+
+      try {
+        const response = await axios.request(options);
+        console.log(response.data);
+        setJobListing(response.data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <Content style={{ padding: "0 0" }}>
         <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
           <Sider style={{ background: colorBgContainer }} width={200}>
-            <Menu mode="inline" style={{ height: "100%" }} items={items2} />
+            <Menu
+              mode="inline"
+              style={{ height: "100%" }}
+              items={filterTypes}
+            />
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
             <List
@@ -91,41 +94,38 @@ const ListingData = () => {
                 },
                 pageSize: 5,
               }}
-              dataSource={data}
+              dataSource={jobListing}
               renderItem={(item) => (
                 <List.Item
                   key={item.title}
-                  actions={[
-                    <IconText
-                      icon={StarOutlined}
-                      text="156"
-                      key="list-vertical-star-o"
-                    />,
-                    <IconText
-                      icon={LikeOutlined}
-                      text="156"
-                      key="list-vertical-like-o"
-                    />,
-                    <IconText
-                      icon={MessageOutlined}
-                      text="2"
-                      key="list-vertical-message"
-                    />,
-                  ]}
                   extra={
                     <div style={{ display: "flex", flexDirection: "column" }}>
-                      <EyeOutlined style={iconStyle} />
+                      <Link to="">
+                        <EyeOutlined style={iconStyle} />
+                      </Link>
                       <EditOutlined style={iconStyle} />
                       <DeleteOutlined style={iconStyle} />
                     </div>
                   }
                 >
                   <List.Item.Meta
-                    avatar={<Avatar src={item.avatar} />}
+                    avatar={
+                      <img
+                        alt="Logo"
+                        src={item.logo}
+                        style={{ width: "96px", height: "96px" }}
+                      />
+                    }
                     title={<a href={item.href}>{item.title}</a>}
-                    description={item.description}
+                    description={
+                      <div>
+                        <p>{`Company: ${item.company}`}</p>
+                        <p>{`Salary: ${item.salary.amount} ${item.salary.currency} ${item.salary.periodicity}`}</p>
+                        <p>{`Job Location: ${item.address.city}, ${item.address.state}, ${item.address.country}`}</p>
+                      </div>
+                    }
                   />
-                  {item.content}
+                  <p>{`Description: ${item.description}`}</p>
                 </List.Item>
               )}
             />

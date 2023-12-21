@@ -10,6 +10,7 @@ const Dashboard = () => {
       <Routes>
         <Route path="/" element={<></>} />
         <Route path="jobs" element={<JobListing />} />
+        {/* <Route path="jobs/:id" element={<} */}
         <Route path="uploads" element={<JobUpload />} />
       </Routes>
     </>

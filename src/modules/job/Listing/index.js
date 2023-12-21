@@ -1,8 +1,8 @@
-import React from "react";
-import SearchBar from "./SearchBar";
-import { Header } from "antd/es/layout/layout";
 import { Layout } from "antd";
+import { Header } from "antd/es/layout/layout";
+import React from "react";
 import ListingData from "./Data";
+import SearchBar from "./SearchBar";
 
 const JobListing = () => {
   return (

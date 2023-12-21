@@ -11,6 +11,7 @@ import {
   Select,
   Typography,
 } from "antd";
+
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
 import React from "react";
@@ -153,6 +154,43 @@ const PostJob = () => {
           </Form.Item>
         </Col>
         <Col lg={20} md={8} xs={24}>
+          <Form.Item name="responsibilities" label="Responsibilities">
+            <Form.List name="responsibilities">
+              {(fields, { add, remove }) => {
+                return (
+                  <>
+                    {fields.map((field, index) => (
+                      <div key={field.key} style={{ display: "flex" }}>
+                        <Form.Item
+                          name={[index]}
+                          rules={[{ required: true }]}
+                          style={{ width: "100%" }}
+                        >
+                          <Input />
+                        </Form.Item>
+
+                        <Button
+                          type="danger"
+                          onClick={() => remove(field.name)}
+                          icon={<MinusCircleOutlined />}
+                        />
+                      </div>
+                    ))}
+
+                    <Button
+                      type="dashed"
+                      onClick={() => add()}
+                      style={{ width: "30%" }}
+                    >
+                      <PlusOutlined /> Add responsibility
+                    </Button>
+                  </>
+                );
+              }}
+            </Form.List>
+          </Form.Item>
+        </Col>
+        <Col lg={20} md={8} xs={24}>
           <Form.Item name="requirements" label="Requirements">
             <Form.List name="requirements">
               {(fields, { add, remove }) => {
@@ -278,7 +316,6 @@ const PostJob = () => {
             <Input placeholder="Education qualification..." />
           </Form.Item>
         </Col>
-
         <Col lg={12} md={8} xs={24}>
           <Form.Item
             name={["qualifications", "skills"]}
@@ -293,27 +330,25 @@ const PostJob = () => {
             <Input placeholder="Required skills..." />
           </Form.Item>
         </Col>
-
         <Col lg={12} md={8} xs={24}>
           <Form.Item
-            name={["qualifications", "experienceYears"]}
-            label="Experience Years"
+            name={["qualifications", "minExperience"]}
+            label="Min Experience"
           >
             <InputNumber
               style={{ width: "100%" }}
-              placeholder="Experience years..."
+              placeholder="Min experience needed(years)..."
             />
           </Form.Item>
         </Col>
-
         <Col lg={12} md={8} xs={24}>
           <Form.Item
-            name={["qualifications", "experienceMonths"]}
-            label="Experience Months"
+            name={["qualifications", "maxExperience"]}
+            label="Max Experience"
           >
             <InputNumber
               style={{ width: "100%" }}
-              placeholder="Experience months..."
+              placeholder="Max experience needed(years)..."
             />
           </Form.Item>
         </Col>
@@ -435,5 +470,10 @@ const PostJob = () => {
     </Form>
   );
 };
+
+// TODO: Validation in forms
+// minExperience, maxExperience
+
+// TODO: Fix console errors
 
 export default PostJob;
