@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={{ zIndex: 999 }}>
       <Layout>
         <Layout.Header className="nav-header">
           <div className="logo">
@@ -34,7 +34,7 @@ const Navbar = () => {
               placement="right"
               closable={true}
               onClose={showDrawer}
-              visible={visible}
+              open={visible}
               style={{ zIndex: 99999 }}
             >
               <LeftMenu mode={"inline"} />
