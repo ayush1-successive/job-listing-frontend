@@ -1,41 +1,18 @@
-import {
-  DeleteOutlined,
-  EditOutlined,
-  EyeOutlined,
-  LikeOutlined,
-  MessageOutlined,
-  StarOutlined,
-} from "@ant-design/icons";
-import { Avatar, Layout, List, Menu, Space, theme } from "antd";
+import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
+import { Layout, List, Menu, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content } from "antd/es/layout/layout";
-
-import React, { useEffect, useState } from "react";
-import { filterTypes } from "./filters";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-const data = Array.from({ length: 23 }).map((_, i) => ({
-  href: "https://ant.design",
-  title: `ant design part ${i}`,
-  avatar: `https://xsgames.co/randomusers/avatar.php?g=pixel&key=${i}`,
-  description:
-    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-  content:
-    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
-}));
-
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
+import { filterTypes } from "./filters";
 
 const ListingData = () => {
   // const [filter, setFilter] = useState({});
 
   const [jobListing, setJobListing] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5; // Number of items per page
 
   const {
     token: { colorBgContainer },
@@ -71,7 +48,11 @@ const ListingData = () => {
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div>
@@ -89,10 +70,13 @@ const ListingData = () => {
               itemLayout="vertical"
               size="small"
               pagination={{
-                onChange: (page) => {
-                  console.log(page);
-                },
-                pageSize: 5,
+                current: currentPage,
+                onChange: handlePageChange,
+                pageSize: pageSize,
+                size: "small",
+                showSizeChanger: false,
+                total: undefined,
+                align: "center",
               }}
               dataSource={jobListing}
               renderItem={(item) => (
@@ -100,7 +84,7 @@ const ListingData = () => {
                   key={item.title}
                   extra={
                     <div style={{ display: "flex", flexDirection: "column" }}>
-                      <Link to="">
+                      <Link to ={`${item.title}/${item.company}`}>
                         <EyeOutlined style={iconStyle} />
                       </Link>
                       <EditOutlined style={iconStyle} />
@@ -116,7 +100,7 @@ const ListingData = () => {
                         style={{ width: "96px", height: "96px" }}
                       />
                     }
-                    title={<a href={item.href}>{item.title}</a>}
+                    title={item.title}
                     description={
                       <div>
                         <p>{`Company: ${item.company}`}</p>
