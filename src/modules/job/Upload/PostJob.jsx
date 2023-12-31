@@ -84,7 +84,7 @@ const PostJob = () => {
             rules={[
               {
                 required: true,
-                message: "Please enter the street",
+                message: "Please enter the job title",
               },
             ]}
             hasFeedback
@@ -139,7 +139,9 @@ const PostJob = () => {
             <Input placeholder="Industry..." />
           </Form.Item>
         </Col>
-        <Col lg={20} md={8} xs={24}>
+      </Row>
+      <Row gutter={24}>
+        <Col lg={12} md={8} xs={24}>
           <Form.Item
             name="description"
             label="Description"
@@ -153,7 +155,9 @@ const PostJob = () => {
             <TextArea placeholder="Enter job description..." />
           </Form.Item>
         </Col>
-        <Col lg={20} md={8} xs={24}>
+      </Row>
+      <Row gutter={24}>
+        <Col lg={12} md={8} xs={24}>
           <Form.Item name="responsibilities" label="Responsibilities">
             <Form.List name="responsibilities">
               {(fields, { add, remove }) => {
@@ -177,11 +181,7 @@ const PostJob = () => {
                       </div>
                     ))}
 
-                    <Button
-                      type="dashed"
-                      onClick={() => add()}
-                      style={{ width: "30%" }}
-                    >
+                    <Button type="dashed" onClick={() => add()}>
                       <PlusOutlined /> Add responsibility
                     </Button>
                   </>
@@ -190,7 +190,9 @@ const PostJob = () => {
             </Form.List>
           </Form.Item>
         </Col>
-        <Col lg={20} md={8} xs={24}>
+      </Row>
+      <Row gutter={24}>
+        <Col lg={12} md={8} xs={24}>
           <Form.Item name="requirements" label="Requirements">
             <Form.List name="requirements">
               {(fields, { add, remove }) => {
@@ -214,11 +216,7 @@ const PostJob = () => {
                       </div>
                     ))}
 
-                    <Button
-                      type="dashed"
-                      onClick={() => add()}
-                      style={{ width: "30%" }}
-                    >
+                    <Button type="dashed" onClick={() => add()}>
                       <PlusOutlined /> Add requirement
                     </Button>
                   </>
@@ -276,7 +274,7 @@ const PostJob = () => {
             <Input />
           </Form.Item>
         </Col>
-        <Col lg={11} md={8} xs={24}>
+        <Col lg={8} md={8} xs={24}>
           <Form.Item
             name={["address", "country"]}
             label="Country"
@@ -290,9 +288,9 @@ const PostJob = () => {
             <Input />
           </Form.Item>
         </Col>
-        <Col lg={11} md={8} xs={24}>
+        <Col lg={8} md={8} xs={24}>
           <Form.Item name={["address", "postalCode"]} label="Postal Code">
-            <InputNumber style={{ width: "50%" }} />
+            <InputNumber style={{ width: "100%" }} />
           </Form.Item>
         </Col>
       </Row>
@@ -405,11 +403,7 @@ const PostJob = () => {
               },
             ]}
           >
-            <DatePicker
-              style={{ width: "100%" }}
-              showTime
-              format="YYYY-MM-DD"
-            />
+            <DatePicker style={{ width: "100%" }} />
           </Form.Item>
         </Col>
 
@@ -472,8 +466,6 @@ const PostJob = () => {
 };
 
 // TODO: Validation in forms
-// minExperience, maxExperience
-
 // TODO: Fix console errors
 
 export default PostJob;
