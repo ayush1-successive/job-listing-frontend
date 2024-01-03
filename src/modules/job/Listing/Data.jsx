@@ -1,18 +1,21 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
-import { Layout, List, Menu, theme } from "antd";
+import { Button, Layout, List, Menu, Popconfirm, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content } from "antd/es/layout/layout";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { filterTypes } from "./filters";
 
+const fields = ["title", "company", "logo", "salary", "address", "description"];
+
 const ListingData = () => {
-  // const [filter, setFilter] = useState({});
+  // const [filters, setFilters] = useState({});
 
   const [jobListing, setJobListing] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5; // Number of items per page
+  const [totalCount, setTotalCount] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   const {
     token: { colorBgContainer },
@@ -22,36 +25,55 @@ const ListingData = () => {
   //   setFilter(filterType);
   // };
 
-  const iconStyle = {
+  const buttonStyle = {
     fontSize: "22px",
+    height: "auto",
+    width: "auto",
     color: "#1e5fd6",
-    background: "#f0f0f0",
-    padding: "8px",
-    borderRadius: "4px",
     margin: "8px",
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const options = {
-        method: "GET",
-        url: "http://localhost:8080/jobs",
-      };
-
-      try {
-        const response = await axios.request(options);
-        console.log(response.data);
-        setJobListing(response.data.data);
-      } catch (error) {
-        console.error(error);
-      }
+  const fetchData = async () => {
+    const options = {
+      method: "GET",
+      url: `http://localhost:8080/jobs/filters?page=${currentPage}&limit=${itemsPerPage}&fields=${fields.join(
+        ","
+      )}`,
     };
 
-    fetchData();
-  }, [currentPage]);
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+      setJobListing(response.data.data.data);
+      setTotalCount(response.data.data.total);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  const handlePageChange = (page) => {
+  useEffect(() => {
+    fetchData();
+  }, [currentPage, itemsPerPage]);
+
+  const deleteJobListing = async (jobId) => {
+    console.log("id:", jobId);
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/jobs/${jobId}`
+      );
+
+      console.log(response.data);
+
+      await fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlePageChange = (page, size) => {
     setCurrentPage(page);
+    setItemsPerPage(size);
   };
 
   return (
@@ -69,14 +91,14 @@ const ListingData = () => {
             <List
               itemLayout="vertical"
               size="small"
+              style={{ width: "90%" }}
               pagination={{
-                current: currentPage,
-                onChange: handlePageChange,
-                pageSize: pageSize,
                 size: "small",
-                showSizeChanger: false,
-                total: undefined,
                 align: "center",
+                pageSize: itemsPerPage,
+                total: totalCount,
+                onChange: handlePageChange,
+                pageSizeOptions: [5, 10, 20, 50],
               }}
               dataSource={jobListing}
               renderItem={(item) => (
@@ -84,11 +106,28 @@ const ListingData = () => {
                   key={item.title}
                   extra={
                     <div style={{ display: "flex", flexDirection: "column" }}>
-                      <Link to ={`${item.title}/${item.company}`}>
-                        <EyeOutlined style={iconStyle} />
+                      <Link to={`/jobs/${item.title}/${item.company}`}>
+                        <Button style={buttonStyle}>
+                          <EyeOutlined />
+                        </Button>
                       </Link>
-                      <EditOutlined style={iconStyle} />
-                      <DeleteOutlined style={iconStyle} />
+
+                      <Button style={buttonStyle}>
+                        <EditOutlined/>
+                      </Button>
+
+                      <Popconfirm
+                        title="Delete the listing"
+                        description="Are you sure to delete this job-listing?"
+                        placement="left"
+                        onConfirm={() => deleteJobListing(item._id)}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <Button style={buttonStyle}>
+                          <DeleteOutlined />
+                        </Button>
+                      </Popconfirm>
                     </div>
                   }
                 >

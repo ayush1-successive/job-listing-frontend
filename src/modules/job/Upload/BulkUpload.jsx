@@ -3,7 +3,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { Divider, message, Typography, Upload } from "antd";
 
 const props = {
-  name: "file",
+  // name: "file",
   multiple: true,
   action: "http://localhost:8080/jobs/upload",
   accept: ".csv",

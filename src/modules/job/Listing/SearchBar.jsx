@@ -30,7 +30,7 @@ const SearchBox = ({ onSearch }) => {
           background: "#1890ff",
           border: "none",
           borderRadius: "4px",
-          width: "100%",
+          width: "90%",
         }}
       />
     </div>
