@@ -7,7 +7,7 @@ const Router = () => (
     <Routes>
       <Route path="/" element={<Navigate to="dashboard" replace />} />
       <Route path="dashboard/*" element={<Dashboard />} />
-      <Route path="/jobs/:title/:company" element={<Detail />} />
+      <Route path="/jobs/:jobId" element={<Detail />} />
       <Route path="profile" element={<Profile />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />

@@ -1,21 +1,30 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
-import { Button, Layout, List, Menu, Popconfirm, theme } from "antd";
+import { Button, Layout, List, Popconfirm, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content } from "antd/es/layout/layout";
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { filterTypes } from "./filters";
+import { FilterContext } from ".";
+import JobFilters, { filterTypes } from "./filters";
 
-const fields = ["title", "company", "logo", "salary", "address", "description"];
+const fields = [
+  "_id",
+  "title",
+  "company",
+  "logo",
+  "salary",
+  "address",
+  "description",
+];
 
 const ListingData = () => {
-  // const [filters, setFilters] = useState({});
-
   const [jobListing, setJobListing] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  // const { filters, setFilters } = useContext(FilterContext);
 
   const {
     token: { colorBgContainer },
@@ -36,7 +45,7 @@ const ListingData = () => {
   const fetchData = async () => {
     const options = {
       method: "GET",
-      url: `http://localhost:8080/jobs/filters?page=${currentPage}&limit=${itemsPerPage}&fields=${fields.join(
+      url: `http://localhost:8080/jobs/?page=${currentPage}&limit=${itemsPerPage}&fields=${fields.join(
         ","
       )}`,
     };
@@ -80,12 +89,13 @@ const ListingData = () => {
     <div>
       <Content style={{ padding: "0 0" }}>
         <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
-          <Sider style={{ background: colorBgContainer }} width={200}>
-            <Menu
+          <Sider style={{ background: colorBgContainer }} width={250}>
+            {/* <Menu
               mode="inline"
               style={{ height: "100%" }}
               items={filterTypes}
-            />
+            /> */}
+            <JobFilters mode="inline" style={{ height: "100%" }} />
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
             <List
@@ -106,14 +116,14 @@ const ListingData = () => {
                   key={item.title}
                   extra={
                     <div style={{ display: "flex", flexDirection: "column" }}>
-                      <Link to={`/jobs/${item.title}/${item.company}`}>
+                      <Link to={`/jobs/${item._id}`}>
                         <Button style={buttonStyle}>
                           <EyeOutlined />
                         </Button>
                       </Link>
 
                       <Button style={buttonStyle}>
-                        <EditOutlined/>
+                        <EditOutlined onClick={() => {}}/>
                       </Button>
 
                       <Popconfirm
