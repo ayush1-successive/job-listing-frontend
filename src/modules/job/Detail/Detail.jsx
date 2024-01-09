@@ -9,14 +9,14 @@ import "./detail.css";
 const { Title, Paragraph, Text } = Typography;
 
 const Detail = () => {
-  const { jobId } = useParams();
+  const { title, company } = useParams();
   const [jobListing, setJobListing] = useState({});
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiUrl = `http://localhost:8080/jobs/${jobId}`;
+        const apiUrl = `http://localhost:8080/jobs/details/?title=${title}&company=${company}`;
         const response = await axios.get(apiUrl);
 
         const jobListing = response?.data?.data;
@@ -42,7 +42,7 @@ const Detail = () => {
     };
 
     fetchData();
-  }, [jobId]);
+  }, [title, company]);
 
   if (notFound) {
     return <ErrorPage />;
