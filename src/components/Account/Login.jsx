@@ -2,8 +2,8 @@ import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Form, Grid, Input, Typography, message, theme } from "antd";
 import axios from "axios";
 import React from "react";
-import FormHeader from "./header";
-import { getFormStyle } from "./styles";
+import FormHeader from "./Header";
+import { getFormStyle } from "../styles/formStyle";
 import { useNavigate } from "react-router-dom";
 
 const { useToken } = theme;
@@ -56,6 +56,7 @@ const Login = () => {
             in."
           />
           <Form
+            aria-label="login-form"
             name="login"
             onFinish={onFinish}
             layout="vertical"

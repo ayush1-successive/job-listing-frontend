@@ -2,9 +2,9 @@ import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Grid, Input, Typography, message, theme } from "antd";
 import axios from "axios";
 import React from "react";
-import FormHeader from "./header";
-import { getFormStyle } from "./styles";
+import FormHeader from "./Header";
 import { useNavigate } from "react-router-dom";
+import { getFormStyle } from "../styles/formStyle";
 
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
@@ -75,7 +75,8 @@ const Register = () => {
             headerText="Welcome to JobNest! Please enter your details to get started."
           />
           <Form
-            name="login"
+            aria-label="register-form"
+            name="register"
             onFinish={onFinish}
             layout="vertical"
             requiredMark="optional"

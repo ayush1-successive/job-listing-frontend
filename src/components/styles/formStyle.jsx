@@ -21,7 +21,7 @@ export const getFormStyle = (screens, token) => {
       alignItems: "center",
       display: "flex",
       height: screens.sm ? "100vh" : "auto",
-      padding: screens.md ? `${token.sizeXXL}px 0px` : "0p,x",
+      padding: screens.md ? `${token.sizeXXL}px 0px` : "0px",
       backgroundColor: "#f0f0f0",
       backgroundSize: "cover",
     },
