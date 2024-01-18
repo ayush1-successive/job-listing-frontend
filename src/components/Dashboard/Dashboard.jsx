@@ -1,14 +1,12 @@
-import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Layout, Menu } from "antd";
-import { Content } from "antd/es/layout/layout";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Listing as JobListing, Create as JobCreate } from "../../modules/job";
-import "./navbar.css";
+import { Create as JobCreate, Listing as JobListing } from "../../modules/job";
 
 const navbarItems = [
-  { key: "jobs", label: "Jobs" },
-  { key: "uploads", label: "Uploads" },
+  { key: "jobs", label: <strong>Jobs</strong> },
+  { key: "uploads", label: <strong>Uploads</strong> },
 ];
 
 const componentMap = {
@@ -16,46 +14,68 @@ const componentMap = {
   uploads: <JobCreate />,
 };
 
+const { Content, Header, Footer } = Layout;
+
 const Dashboard = () => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState("jobs");
+  const [selectedDashboardMenuKey, setSelectedDashboardMenuKey] =
+    useState("jobs");
+
+  const handleMenuKey = (e) => {
+    setSelectedDashboardMenuKey(e.key);
+  };
+
+  const rightMenuItems = [
+    {
+      key: "right-menu",
+      label: <Avatar icon={<UserOutlined />} />,
+      children: [
+        { key: "profile", label: <Link to="/profile">Profile</Link> },
+        {
+          key: "auth-action",
+          label: <Link to="/login">Login</Link>,
+        },
+      ],
+    },
+  ];
 
   return (
-    <>
-      <nav className="navbar" style={{ zIndex: 999 }}>
-        <Layout>
-          <Layout.Header className="nav-header">
-            <div className="logo">
-              <h3 className="brand-font">JobNest</h3>
-            </div>
-            <div className="navbar-menu">
-              <div className="leftMenu">
-                <Menu
-                  mode={"horizontal"}
-                  selectedKeys={selectedMenuItem}
-                  items={navbarItems}
-                  onClick={(e) => setSelectedMenuItem(e.key)}
-                />
-              </div>
-              <div className="rightMenu">
-                <Menu mode={"horizontal"}>
-                  <Menu.SubMenu title={<Avatar icon={<UserOutlined />} />}>
-                    <Menu.Item key="profile">
-                      <UserOutlined /> <Link to="/profile">Profile</Link>
-                    </Menu.Item>
-                    <Menu.Item key="log-in">
-                      <LogoutOutlined /> <Link to="/login">Login</Link>
-                    </Menu.Item>
-                  </Menu.SubMenu>
-                </Menu>
-              </div>
-            </div>
-          </Layout.Header>
-          <Content style={{ padding: "0 24px", minHeight: 280, marginTop: 25 }}>
-            {componentMap[selectedMenuItem]}
-          </Content>
-        </Layout>
-      </nav>
-    </>
+    <Layout>
+      <Header
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: 200,
+            fontSize: 22,
+            fontWeight: "bolder",
+            color: "white",
+          }}
+        >
+          JobNest
+        </div>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          items={navbarItems}
+          style={{ flex: 1, minWidth: 0 }}
+          onClick={handleMenuKey}
+        />
+        <Menu mode={"horizontal"} items={rightMenuItems} />
+      </Header>
+      <Content>{componentMap[selectedDashboardMenuKey]}</Content>
+      <Footer style={{ textAlign: "center" }}>
+        <div
+          style={{ transition: "color 0.3s" }}
+          onMouseEnter={(e) => (e.target.style.color = "blue")}
+          onMouseLeave={(e) => (e.target.style.color = "black")}
+        >
+          JobNest ©{new Date().getFullYear()} Created by Ayush Sinha
+        </div>
+      </Footer>
+    </Layout>
   );
 };
 
