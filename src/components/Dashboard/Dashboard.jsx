@@ -3,7 +3,7 @@ import { Avatar, Layout, Menu } from "antd";
 import { Content } from "antd/es/layout/layout";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { JobListing, JobUpload } from "../../modules/job";
+import { Listing, JobUpload } from "../../modules/job";
 import "./navbar.css";
 
 const navbarItems = [
@@ -12,7 +12,7 @@ const navbarItems = [
 ];
 
 const componentMap = {
-  jobs: <JobListing />,
+  jobs: <Listing />,
   uploads: <JobUpload />,
 };
 
