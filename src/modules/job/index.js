@@ -1,4 +1,6 @@
 import { Listing } from "./Listing";
 import JobUpload from "./Upload";
+import { View } from "./View";
 
-export { Listing, JobUpload };
+export { JobUpload, Listing, View };
+
