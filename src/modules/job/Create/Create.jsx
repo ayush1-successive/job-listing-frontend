@@ -1,6 +1,7 @@
 import { FileAddOutlined, UploadOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { MenuKeyContext } from "../../../components/MenuKey/Context";
 import BulkUpload from "./Bulk";
 import SingleUpload from "./Single";
 
@@ -11,8 +12,7 @@ const Create = () => {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  const [selectedUploadMenuKey, setSelectedUploadMenuKey] =
-    useState("upload-single");
+  const { uploadMenuKey, setUploadMenuKey } = useContext(MenuKeyContext);
 
   const sidebarItems = [
     {
@@ -33,7 +33,8 @@ const Create = () => {
   };
 
   const handleMenuKey = (e) => {
-    setSelectedUploadMenuKey(e.key);
+    sessionStorage.setItem("uploadMenuKey", e.key);
+    setUploadMenuKey(e.key);
   };
 
   return (
@@ -49,7 +50,7 @@ const Create = () => {
         >
           <Menu
             items={sidebarItems}
-            selectedKeys={selectedUploadMenuKey}
+            selectedKeys={uploadMenuKey}
             onClick={handleMenuKey}
             style={{
               height: "100vh",
@@ -65,7 +66,7 @@ const Create = () => {
             borderRadius: 12,
           }}
         >
-          {componentMap[selectedUploadMenuKey]}
+          {componentMap[uploadMenuKey]}
         </Content>
       </Layout>
     </Content>

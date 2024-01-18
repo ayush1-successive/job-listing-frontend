@@ -1,9 +1,10 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Layout, Menu } from "antd";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Create as JobCreate, Listing as JobListing } from "../../modules/job";
 import { AuthenticationContext } from "../Account/Context";
+import { MenuKeyContext } from "../MenuKey/Context";
 
 const navbarItems = [
   { key: "jobs", label: <strong>Jobs</strong> },
@@ -19,10 +20,11 @@ const { Content, Header, Footer } = Layout;
 
 const Dashboard = () => {
   const { isAuth } = useContext(AuthenticationContext);
-  const [ selectedDashboardMenuKey, setSelectedDashboardMenuKey ] = useState("jobs");
+  const { dashboardMenuKey, setDashboardMenuKey } = useContext(MenuKeyContext);
 
   const handleMenuKey = (e) => {
-    setSelectedDashboardMenuKey(e.key);
+    sessionStorage.setItem("dashboardMenuKey", e.key);
+    setDashboardMenuKey(e.key);
   };
 
   const handleLogout = () => {
@@ -56,19 +58,27 @@ const Dashboard = () => {
           alignItems: "center",
         }}
       >
-        <div style={{ width: 200, fontSize: 22, fontWeight: "bolder", color: "white" }}>
+        <div
+          style={{
+            width: 200,
+            fontSize: 22,
+            fontWeight: "bolder",
+            color: "white",
+          }}
+        >
           JobNest
         </div>
         <Menu
           theme="dark"
           mode="horizontal"
           items={navbarItems}
+          selectedKeys={dashboardMenuKey}
           style={{ flex: 1, minWidth: 0 }}
           onClick={handleMenuKey}
         />
         <Menu mode={"horizontal"} items={rightMenuItems} />
       </Header>
-      <Content>{componentMap[selectedDashboardMenuKey]}</Content>
+      <Content>{componentMap[dashboardMenuKey]}</Content>
       <Footer style={{ textAlign: "center" }}>
         <div
           style={{ transition: "color 0.3s" }}
