@@ -79,9 +79,7 @@ const ItemsData = () => {
     }
 
     try {
-      const response = await axios.delete(
-        `http://localhost:8080/jobs/${jobId}`
-      );
+      await axios.delete(`http://localhost:8080/jobs/${jobId}`);
 
       setToFetch(true);
     } catch (error) {
