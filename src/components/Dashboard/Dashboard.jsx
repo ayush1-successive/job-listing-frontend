@@ -3,7 +3,7 @@ import { Avatar, Layout, Menu } from "antd";
 import { Content } from "antd/es/layout/layout";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Listing, JobUpload } from "../../modules/job";
+import { Listing as JobListing, Create as JobCreate } from "../../modules/job";
 import "./navbar.css";
 
 const navbarItems = [
@@ -12,8 +12,8 @@ const navbarItems = [
 ];
 
 const componentMap = {
-  jobs: <Listing />,
-  uploads: <JobUpload />,
+  jobs: <JobListing />,
+  uploads: <JobCreate />,
 };
 
 const Dashboard = () => {
