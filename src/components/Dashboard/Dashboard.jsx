@@ -1,8 +1,9 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Layout, Menu } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Create as JobCreate, Listing as JobListing } from "../../modules/job";
+import { AuthenticationContext } from "../Account/Context";
 
 const navbarItems = [
   { key: "jobs", label: <strong>Jobs</strong> },
@@ -17,11 +18,16 @@ const componentMap = {
 const { Content, Header, Footer } = Layout;
 
 const Dashboard = () => {
-  const [selectedDashboardMenuKey, setSelectedDashboardMenuKey] =
-    useState("jobs");
+  const { isAuth } = useContext(AuthenticationContext);
+  const [ selectedDashboardMenuKey, setSelectedDashboardMenuKey ] = useState("jobs");
 
   const handleMenuKey = (e) => {
     setSelectedDashboardMenuKey(e.key);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
   };
 
   const rightMenuItems = [
@@ -32,7 +38,11 @@ const Dashboard = () => {
         { key: "profile", label: <Link to="/profile">Profile</Link> },
         {
           key: "auth-action",
-          label: <Link to="/login">Login</Link>,
+          label: isAuth ? (
+            <div onClick={handleLogout}>Logout</div>
+          ) : (
+            <Link to="/login">Login</Link>
+          ),
         },
       ],
     },
@@ -46,14 +56,7 @@ const Dashboard = () => {
           alignItems: "center",
         }}
       >
-        <div
-          style={{
-            width: 200,
-            fontSize: 22,
-            fontWeight: "bolder",
-            color: "white",
-          }}
-        >
+        <div style={{ width: 200, fontSize: 22, fontWeight: "bolder", color: "white" }}>
           JobNest
         </div>
         <Menu

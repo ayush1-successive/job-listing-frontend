@@ -1,2 +1,6 @@
-export { default as Login } from "./Login";
-export { default as Register } from "./Register";
+import AuthenticationWrapper from "./Context";
+import Login from "./Login";
+import Register from "./Register";
+
+export { AuthenticationWrapper, Login, Register };
+

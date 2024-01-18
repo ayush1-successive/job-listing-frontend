@@ -1,5 +1,10 @@
 import React from "react";
-import Router from "./Routes";
+import { Router } from "./routes";
+import { AuthenticationWrapper } from "./components/Account";
 
-const App = () => <Router />;
+const App = () => (
+  <AuthenticationWrapper>
+    <Router />
+  </AuthenticationWrapper>
+);
 export default App;

@@ -1,27 +1,30 @@
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Grid, Input, Typography, message, theme } from "antd";
+import { Button, Form, Input, Typography, message, theme } from "antd";
 import axios from "axios";
-import React from "react";
-import FormHeader from "./header";
-import { getFormStyle } from "./styles";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { getFormStyle } from "../styles/formStyle";
+import { AuthenticationContext } from "./Context";
+import FormHeader from "./Header";
 
 const { useToken } = theme;
-const { useBreakpoint } = Grid;
 const { Text, Link } = Typography;
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Register = () => {
   const { token } = useToken();
-  const screens = useBreakpoint();
-  const styles = getFormStyle(screens, token);
+  const styles = getFormStyle(token);
 
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
+  const { isAuth } = useContext(AuthenticationContext);
 
-  const displaySuccessMessage = (data) => {
+  const displaySuccessMessage = (message) => {
     messageApi.open({
       type: "success",
-      content: data.message,
+      content: message,
+      duration: 1,
     });
   };
 
@@ -40,6 +43,7 @@ const Register = () => {
     messageApi.open({
       type: "error",
       content: data.message,
+      duration: 4,
     });
   };
 
@@ -55,14 +59,22 @@ const Register = () => {
     delete options.data.confirmPassword;
 
     try {
-      const response = await axios.request(options);
+      await axios.request(options);
+      displaySuccessMessage(
+        "User successfully registered. Redirecting to login page.."
+      );
 
-      displaySuccessMessage(response.data);
-      navigate("/dashboard");
+      await delay(1000);
+      navigate("/login");
     } catch (error) {
+      console.log(error);
       displayErrorMessage(error.response.data);
     }
   };
+
+  if (isAuth) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   return (
     <>
@@ -75,7 +87,8 @@ const Register = () => {
             headerText="Welcome to JobNest! Please enter your details to get started."
           />
           <Form
-            name="login"
+            aria-label="register-form"
+            name="register"
             onFinish={onFinish}
             layout="vertical"
             requiredMark="optional"

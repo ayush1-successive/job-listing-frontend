@@ -2,8 +2,9 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, List, Popconfirm } from "antd";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ListingContext } from "./Context";
+import { AuthenticationContext } from "../../../components/Account/Context";
 
 const fields = [
   "_id",
@@ -24,6 +25,8 @@ const buttonStyle = {
 };
 
 const ItemsData = () => {
+  const { isAuth } = useContext(AuthenticationContext);
+
   const {
     toFetch,
     setToFetch,
@@ -37,9 +40,10 @@ const ItemsData = () => {
   const [jobListing, setJobListing] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
+  const navigate = useNavigate();
+
   const fetchData = async () => {
     const queryFilters = Object.entries(filters).reduce((acc, [key, value]) => {
-      console.log(value);
       return value.length > 0 ? acc + `${key}=${value.join(",")}&` : acc;
     }, "");
 
@@ -69,12 +73,15 @@ const ItemsData = () => {
   }, [toFetch]);
 
   const deleteJobListing = async (jobId) => {
+    if (!isAuth) {
+      navigate("/login");
+      return;
+    }
+
     try {
       const response = await axios.delete(
         `http://localhost:8080/jobs/${jobId}`
       );
-
-      console.log(response.data);
 
       setToFetch(true);
     } catch (error) {
@@ -115,24 +122,28 @@ const ItemsData = () => {
                   </Button>
                 </Link>
 
-                <Link to={`/edit/${item._id}`}>
-                  <Button style={buttonStyle}>
-                    <EditOutlined />
-                  </Button>
-                </Link>
+                {isAuth && (
+                  <>
+                    <Link to={`/edit/${item._id}`}>
+                      <Button style={buttonStyle}>
+                        <EditOutlined />
+                      </Button>
+                    </Link>
 
-                <Popconfirm
-                  title="Delete the listing"
-                  description="Are you sure to delete this job-listing?"
-                  placement="left"
-                  onConfirm={() => deleteJobListing(item._id)}
-                  okText="Yes"
-                  cancelText="No"
-                >
-                  <Button style={buttonStyle}>
-                    <DeleteOutlined />
-                  </Button>
-                </Popconfirm>
+                    <Popconfirm
+                      title="Delete the listing"
+                      description="Are you sure to delete this job-listing?"
+                      placement="left"
+                      onConfirm={() => deleteJobListing(item._id)}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Button style={buttonStyle}>
+                        <DeleteOutlined />
+                      </Button>
+                    </Popconfirm>
+                  </>
+                )}
               </div>
             }
           >

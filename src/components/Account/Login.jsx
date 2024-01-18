@@ -1,48 +1,57 @@
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Form, Grid, Input, Typography, message, theme } from "antd";
-import axios from "axios";
-import React from "react";
-import FormHeader from "./header";
-import { getFormStyle } from "./styles";
-import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, Typography, message, theme } from "antd";
+import React, { useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { getFormStyle } from "../styles/formStyle";
+import { AuthenticationContext } from "./Context";
+import FormHeader from "./Header";
+import apiInstance from "../../services/api";
 
 const { useToken } = theme;
-const { useBreakpoint } = Grid;
 const { Text, Link } = Typography;
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Login = () => {
   const { token } = useToken();
-  const screens = useBreakpoint();
-  const styles = getFormStyle(screens, token);
+  const styles = getFormStyle(token);
 
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
+  const { isAuth } = useContext(AuthenticationContext);
 
   const displayMessage = (messageType, data) => {
     messageApi.open({
       type: messageType,
       content: data?.message,
+      duration: 1,
     });
   };
 
   const onFinish = async (values) => {
-    console.log("Received values of form: ", values);
-
-    const options = {
-      method: "POST",
-      url: "http://localhost:8080/users/login",
-      data: values,
-    };
-
     try {
-      const response = await axios.request(options);
-      displayMessage("success", response?.data);
+      const response = await apiInstance.post("/users/login", values);
 
+      console.log(response.data);
+
+      displayMessage("success", {
+        message: "Login successful. Redirecting to Dashboard page..",
+      });
+
+      localStorage.setItem("token", response.data.data.token);
+      await delay(1000);
+
+      window.location.reload();
       navigate("/dashboard");
     } catch (error) {
+      console.error(error);
       displayMessage("error", error.response?.data);
     }
   };
+
+  if (isAuth) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   return (
     <>
@@ -56,6 +65,7 @@ const Login = () => {
             in."
           />
           <Form
+            aria-label="login-form"
             name="login"
             onFinish={onFinish}
             layout="vertical"
