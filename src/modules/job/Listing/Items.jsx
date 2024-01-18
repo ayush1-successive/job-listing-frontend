@@ -1,9 +1,9 @@
-import { DeleteOutlined, EyeOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, List, Popconfirm } from "antd";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { ListingContext } from "./Context";
 import { Link } from "react-router-dom";
+import { ListingContext } from "./Context";
 
 const fields = [
   "_id",
@@ -112,6 +112,12 @@ const ItemsData = () => {
                 <Link to={`/jobs/${item._id}`}>
                   <Button style={buttonStyle}>
                     <EyeOutlined />
+                  </Button>
+                </Link>
+
+                <Link to={`/edit/${item._id}`}>
+                  <Button style={buttonStyle}>
+                    <EditOutlined />
                   </Button>
                 </Link>
 

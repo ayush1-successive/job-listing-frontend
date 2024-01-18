@@ -41,8 +41,14 @@ const tailFormItemLayout = {
 };
 
 const JobForm = (props) => {
-  const { jobListing, submitMessage, formHeading, requestMethod, requestApi } =
-    props;
+  const {
+    jobListing,
+    submitMessage,
+    formHeading,
+    requestMethod,
+    requestApi,
+    uploadSuccess,
+  } = props;
 
   const [form] = Form.useForm();
 
@@ -63,7 +69,7 @@ const JobForm = (props) => {
       const response = await axios.request(options);
       console.log(response.data);
 
-      window.location.reload();
+      uploadSuccess();
     } catch (error) {
       console.log(error);
     }
