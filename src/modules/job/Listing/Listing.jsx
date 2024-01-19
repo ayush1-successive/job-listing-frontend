@@ -9,7 +9,7 @@ const { Content, Sider } = Layout;
 
 const Listing = () => {
   const [toFetch, setToFetch] = useState(true);
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({ salary: [2, 50] });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -34,7 +34,7 @@ const Listing = () => {
       >
         <SearchBar />
 
-        <Layout>
+        <Layout style={{ marginTop: 15 }}>
           <Sider
             style={{ background: colorBgContainer, borderRadius: 12 }}
             width={270}

@@ -42,20 +42,25 @@ const ItemsData = () => {
 
   const navigate = useNavigate();
 
+  const queryFilters = () => {
+    const query = Object.entries(filters).reduce((acc, [key, value]) => {
+      const newValue = Array.isArray(value) ? value.join(",") : value;
+      return { ...acc, [key]: newValue };
+    }, {});
+
+    return query;
+  };
+
   const fetchData = async () => {
-    const queryFilters = Object.entries(filters).reduce((acc, [key, value]) => {
-      return value.length > 0 ? acc + `${key}=${value.join(",")}&` : acc;
-    }, "");
-
-    const options = {
-      method: "GET",
-      url: `http://localhost:8080/jobs/?${queryFilters}page=${currentPage}&limit=${itemsPerPage}&fields=${fields.join(
-        ","
-      )}`,
-    };
-
     try {
-      const response = await axios.request(options);
+      const response = await axios.get(`http://localhost:8080/jobs/?`, {
+        params: {
+          ...queryFilters(),
+          page: currentPage,
+          limit: itemsPerPage,
+          fields: fields.join(","),
+        },
+      });
 
       setJobListing(response.data.data.data);
       setTotalCount(response.data.data.total);
@@ -94,7 +99,7 @@ const ItemsData = () => {
   };
 
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 20, minHeight: "80vh" }}>
       <List
         itemLayout="vertical"
         size="small"

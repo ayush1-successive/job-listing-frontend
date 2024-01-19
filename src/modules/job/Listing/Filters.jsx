@@ -32,7 +32,7 @@ const JobFilters = () => {
   };
 
   const clearFilters = () => {
-    setFilters({});
+    setFilters({ salary: [2, 50] });
     resetPage();
     setToFetch(true);
   };
@@ -71,12 +71,10 @@ const JobFilters = () => {
           range
           marks={{ 2: "2 lpa", 50: "50 lpa" }}
           tooltip={{ formatter }}
-          onChangeComplete={(value) =>
-            setFilters({ ...filters, salary: value })
-          }
+          onChange={(value) => setFilters({ ...filters, salary: value })}
           min={2}
           max={50}
-          defaultValue={[2, 50]}
+          value={filters.salary}
         />
       </div>
 

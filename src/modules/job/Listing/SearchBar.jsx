@@ -21,13 +21,14 @@ const SearchBox = () => {
             Find Jobs
           </Button>
         }
+        onPressEnter={() => setToFetch(true)}
         size="large"
-        onChange={(e) => setFilters({ ...filters, searchText: e.target.value })}
+        onChange={(e) => setFilters({ ...filters, title: e.target.value })}
         style={{
           border: "none",
           width: "80%",
         }}
-        value={filters.searchText}
+        value={filters.title}
       />
     </div>
   );
