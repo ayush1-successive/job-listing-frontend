@@ -1,5 +1,5 @@
 import React from "react";
-import { JobForm } from "../Form";
+import { JobForm } from "../../Form";
 
 const SingleUpload = () => {
   const uploadSuccess = () => {

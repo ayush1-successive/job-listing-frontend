@@ -16,12 +16,14 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.2.0",
     "sonarqube-scanner": "^3.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "coverage": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
     "sonarqube": "node sonarqube-scanner.js"
   },
@@ -42,5 +44,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs",
+      "antd/es/layout/layout": "antd/lib/layout/layout",
+      "antd/es/layout/Sider": "antd/lib/layout/Sider",
+      "antd/es/menu/SubMenu": "antd/lib/menu/SubMenu",
+      "antd/es/input/TextArea": "antd/lib/input/TextArea",
+      "antd/es/upload/Dragger": "antd/lib/upload/Dragger",
+      "antd/es/mentions": "antd/lib/mentions"
+    }
   }
 }
