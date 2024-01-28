@@ -1,9 +1,9 @@
 import { Layout, theme } from "antd";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { ListingContext } from "./Context";
 import JobFilters from "./Filters";
 import ItemsData from "./Items";
 import SearchBar from "./SearchBar";
-import { ListingContext } from "./Context";
 
 const { Content, Sider } = Layout;
 
@@ -18,20 +18,32 @@ const Listing = () => {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const contextValue = useMemo(
+    () => ({
+      toFetch,
+      setToFetch,
+      filters,
+      setFilters,
+      currentPage,
+      setCurrentPage,
+      itemsPerPage,
+      setItemsPerPage,
+    }),
+    [
+      toFetch,
+      setToFetch,
+      filters,
+      setFilters,
+      currentPage,
+      setCurrentPage,
+      itemsPerPage,
+      setItemsPerPage,
+    ]
+  );
+
   return (
     <Content style={{ padding: 12 }}>
-      <ListingContext.Provider
-        value={{
-          toFetch,
-          setToFetch,
-          filters,
-          setFilters,
-          currentPage,
-          setCurrentPage,
-          itemsPerPage,
-          setItemsPerPage,
-        }}
-      >
+      <ListingContext.Provider value={contextValue}>
         <SearchBar />
 
         <Layout style={{ marginTop: 15 }}>

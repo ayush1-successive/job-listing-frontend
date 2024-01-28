@@ -87,8 +87,8 @@ const View = () => {
           {jobListing.qualifications?.education}
         </Descriptions.Item>
         <Descriptions.Item label="Skills" style={{ fontSize: "15px" }}>
-          {jobListing.qualifications?.skills?.map((skill, index) => (
-            <Tag style={{ fontSize: "15px" }} key={index}>
+          {jobListing.qualifications?.skills?.map((skill) => (
+            <Tag style={{ fontSize: "15px" }} key={`${skill}`}>
               {skill}
             </Tag>
           ))}

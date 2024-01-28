@@ -1,6 +1,7 @@
 import { Card, Descriptions, Divider, Modal, Table, Typography } from "antd";
 import axios from "axios";
 import dayjs from "dayjs";
+import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 
 const ErrorDetail = (props) => {
@@ -118,6 +119,11 @@ const ErrorDetail = (props) => {
       </Modal>
     </div>
   );
+};
+
+ErrorDetail.propTypes = {
+  recordId: PropTypes.string.isRequired,
+  formatMilliseconds: PropTypes.func.isRequired,
 };
 
 export default ErrorDetail;

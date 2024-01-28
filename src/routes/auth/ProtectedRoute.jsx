@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import apiInstance from "../../services/api";
 import { AuthenticationContext } from "../../components/Account/Context";
+import apiInstance from "../../services/api";
 
 const ProtectedRoute = ({ children }) => {
   const { setIsAuth, setAuthData } = useContext(AuthenticationContext);
@@ -18,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
           email: response.data.data.email,
         });
       } catch (error) {
-        console.error(error);
+        console.log(error);
 
         localStorage.clear();
         setIsAuth(false);
@@ -39,6 +40,10 @@ const ProtectedRoute = ({ children }) => {
   }
 
   return <Navigate to="/login" replace />;
+};
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ProtectedRoute;

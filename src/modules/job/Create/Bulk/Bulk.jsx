@@ -23,7 +23,7 @@ const formatter = (value) => <CountUp end={value} separator="," />;
 
 const BulkUpload = () => {
   const [loading, setLoading] = useState(true);
-  const [joblistingCount, setJobListingCount] = useState(0);
+  const [jobListingCount, setJobListingCount] = useState(0);
   const [toFetchHistory, setToFetchHistory] = useState(true);
 
   const props = {
@@ -35,7 +35,7 @@ const BulkUpload = () => {
         message.error(
           `Invalid file type for ${file.name}. Please upload only CSV files.`
         );
-        return Upload.LIST_IGNORE;
+        return false;
       }
       return true;
     },
@@ -66,7 +66,6 @@ const BulkUpload = () => {
     try {
       const response = await axios.get("http://localhost:8080/jobs/count");
 
-      console.log(response.data.data);
       setJobListingCount(response?.data?.data.count);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -97,7 +96,7 @@ const BulkUpload = () => {
           >
             <Statistic
               title="Active Job Listings"
-              value={joblistingCount}
+              value={jobListingCount}
               formatter={formatter}
               valueStyle={{ color: "#3f8600" }}
               prefix={<ArrowUpOutlined />}

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Typography } from "antd";
 
 const { Text, Title } = Typography;
@@ -29,6 +30,16 @@ const FormHeader = (props) => {
       <Text style={styles.text}>{headerText}</Text>
     </div>
   );
+};
+
+FormHeader.propTypes = {
+  styles: PropTypes.shape({
+    header: PropTypes.object.isRequired,
+    title: PropTypes.object.isRequired,
+    text: PropTypes.object.isRequired,
+  }).isRequired,
+  headerTitle: PropTypes.string.isRequired,
+  headerText: PropTypes.string.isRequired,
 };
 
 export default FormHeader;

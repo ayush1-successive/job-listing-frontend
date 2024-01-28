@@ -1,5 +1,6 @@
 import { Button, Col, List, Row, Statistic } from "antd";
 import axios from "axios";
+import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import ErrorDetail from "./ErrorDetail";
 
@@ -44,7 +45,7 @@ const UploadHistory = (props) => {
     return `${minutes}m ${seconds}s`;
   };
 
-  const handlePageChange = async (page) => {
+  const handlePageChange = (page) => {
     setCurrentPage(page);
     setToFetchHistory(true);
   };
@@ -161,6 +162,11 @@ const UploadHistory = (props) => {
       />
     </>
   );
+};
+
+UploadHistory.propTypes = {
+  toFetchHistory: PropTypes.bool.isRequired,
+  setToFetchHistory: PropTypes.func.isRequired,
 };
 
 export default UploadHistory;

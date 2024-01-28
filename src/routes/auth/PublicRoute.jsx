@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from "react";
 import { AuthenticationContext } from "../../components/Account/Context";
-import apiInstance from "../../services/api";
 import { MenuKeyContext } from "../../components/MenuKey/Context";
+import apiInstance from "../../services/api";
 
 const PublicRoute = ({ children }) => {
   const { setIsAuth } = useContext(AuthenticationContext);
@@ -37,6 +38,10 @@ const PublicRoute = ({ children }) => {
   }, []);
 
   return isLoading ? null : children;
+};
+
+PublicRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default PublicRoute;
