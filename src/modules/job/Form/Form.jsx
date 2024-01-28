@@ -14,6 +14,7 @@ import {
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
+import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
 const formItemLayout = {
@@ -57,8 +58,6 @@ const JobForm = (props) => {
   }, [form, jobListing]);
 
   const onFinish = async (values) => {
-    console.log(values);
-
     const options = {
       method: requestMethod,
       url: requestApi,
@@ -79,6 +78,7 @@ const JobForm = (props) => {
     <Form
       {...formItemLayout}
       form={form}
+      aria-label={`${formHeading}-form`}
       name={formHeading}
       onFinish={onFinish}
       scrollToFirstError
@@ -153,16 +153,7 @@ const JobForm = (props) => {
       </Row>
       <Row gutter={24}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
-            name="description"
-            label="Description"
-            rules={[
-              {
-                required: true,
-                message: "Please enter the job description",
-              },
-            ]}
-          >
+          <Form.Item name="description" label="Description">
             <TextArea placeholder="Enter job description..." />
           </Form.Item>
         </Col>
@@ -265,30 +256,12 @@ const JobForm = (props) => {
 
       <Row gutter={10}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
-            name={["address", "city"]}
-            label="City"
-            rules={[
-              {
-                required: true,
-                message: "Please enter the city",
-              },
-            ]}
-          >
+          <Form.Item name={["address", "city"]} label="City">
             <Input />
           </Form.Item>
         </Col>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
-            name={["address", "state"]}
-            label="State"
-            rules={[
-              {
-                required: true,
-                message: "Please enter the state",
-              },
-            ]}
-          >
+          <Form.Item name={["address", "state"]} label="State">
             <Input />
           </Form.Item>
         </Col>
@@ -427,6 +400,15 @@ const JobForm = (props) => {
       </Form.Item>
     </Form>
   );
+};
+
+JobForm.propTypes = {
+  jobListing: PropTypes.object,
+  submitMessage: PropTypes.string.isRequired,
+  formHeading: PropTypes.string.isRequired,
+  requestMethod: PropTypes.string.isRequired,
+  requestApi: PropTypes.string.isRequired,
+  uploadSuccess: PropTypes.func.isRequired,
 };
 
 export default JobForm;

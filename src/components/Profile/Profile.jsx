@@ -56,8 +56,8 @@ const Profile = () => {
   const fetchData = async () => {
     try {
       const apiUrl = `http://localhost:8080/users/${authData.userId}`;
-      const response = await axios.get(apiUrl);
 
+      const response = await axios.get(apiUrl);
       const profileData = response.data?.data;
 
       if (profileData.dateOfBirth) {
@@ -68,10 +68,6 @@ const Profile = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
-
-  const onFinish = async (values) => {
-    console.log(values);
   };
 
   const handleSave = async (e) => {
@@ -109,7 +105,7 @@ const Profile = () => {
       await delay(1000);
       navigate("/dashboard");
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -123,7 +119,9 @@ const Profile = () => {
       <section style={{ ...styles.section, height: "auto" }}>
         <div style={{ ...styles.container, width: "700px" }}>
           <div style={{ marginBottom: 20, textAlign: "center" }}>
-            <Typography.Title style={styles.title}>Profile</Typography.Title>
+            <Typography.Title style={styles.title}>
+              Profile Page
+            </Typography.Title>
           </div>
           <div style={{ ...styles.header, textAlign: "right" }}>
             {editMode ? (
@@ -147,7 +145,6 @@ const Profile = () => {
             form={form}
             layout="vertical"
             disabled={!editMode}
-            onFinish={onFinish}
           >
             <Form.Item
               name="name"

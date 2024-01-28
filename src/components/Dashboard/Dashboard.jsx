@@ -35,13 +35,13 @@ const Dashboard = () => {
   const rightMenuItems = [
     {
       key: "right-menu",
-      label: <Avatar icon={<UserOutlined />} />,
+      label: <Avatar data-testid="user-icon" icon={<UserOutlined />} />,
       children: [
         { key: "profile", label: <Link to="/profile">Profile</Link> },
         {
           key: "auth-action",
           label: isAuth ? (
-            <div onClick={handleLogout}>Logout</div>
+            <Link onClick={handleLogout}>Logout</Link>
           ) : (
             <Link to="/login">Login</Link>
           ),

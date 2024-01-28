@@ -2,9 +2,9 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, List, Popconfirm } from "antd";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ListingContext } from "./Context";
+import { Link } from "react-router-dom";
 import { AuthenticationContext } from "../../../components/Account/Context";
+import { ListingContext } from "./Context";
 
 const fields = [
   "_id",
@@ -40,13 +40,15 @@ const ItemsData = () => {
   const [jobListing, setJobListing] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
-  const navigate = useNavigate();
-
   const queryFilters = () => {
     const query = Object.entries(filters).reduce((acc, [key, value]) => {
       const newValue = Array.isArray(value) ? value.join(",") : value;
-      return { ...acc, [key]: newValue };
+      return newValue ? { ...acc, [key]: newValue } : acc;
     }, {});
+
+    if (query.salary === "2,50") {
+      delete query.salary;
+    }
 
     return query;
   };
@@ -78,11 +80,6 @@ const ItemsData = () => {
   }, [toFetch]);
 
   const deleteJobListing = async (jobId) => {
-    if (!isAuth) {
-      navigate("/login");
-      return;
-    }
-
     try {
       await axios.delete(`http://localhost:8080/jobs/${jobId}`);
 
@@ -114,13 +111,16 @@ const ItemsData = () => {
           pageSizeOptions: [5, 10, 20, 50],
         }}
         dataSource={jobListing}
-        renderItem={(item) => (
+        renderItem={(item, index) => (
           <List.Item
             key={item.title}
             extra={
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <Link to={`/jobs/${item._id}`}>
-                  <Button style={buttonStyle}>
+                  <Button
+                    data-testid={`view-button-${index}`}
+                    style={buttonStyle}
+                  >
                     <EyeOutlined />
                   </Button>
                 </Link>
@@ -128,7 +128,10 @@ const ItemsData = () => {
                 {isAuth && (
                   <>
                     <Link to={`/edit/${item._id}`}>
-                      <Button style={buttonStyle}>
+                      <Button
+                        data-testid={`edit-button-${index}`}
+                        style={buttonStyle}
+                      >
                         <EditOutlined />
                       </Button>
                     </Link>
@@ -141,7 +144,10 @@ const ItemsData = () => {
                       okText="Yes"
                       cancelText="No"
                     >
-                      <Button style={buttonStyle}>
+                      <Button
+                        data-testid={`delete-button-${index}`}
+                        style={buttonStyle}
+                      >
                         <DeleteOutlined />
                       </Button>
                     </Popconfirm>
@@ -163,7 +169,9 @@ const ItemsData = () => {
                 <div>
                   <p>{`Company: ${item.company}`}</p>
                   <p>{`Salary: ₹ ${item.salary} / annually`}</p>
-                  <p>{`Job Location: ${item.address.city}, ${item.address.state}`}</p>
+                  {item.address && (
+                    <p>{`Job Location: ${item.address.city}, ${item.address.state}`}</p>
+                  )}
                 </div>
               }
             />

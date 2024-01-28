@@ -46,7 +46,7 @@ const JobFilters = () => {
         mode="multiple"
         style={{ width: "100%" }}
         dropdownStyle={{ textAlign: "center" }}
-        placeholder="Select Job Type"
+        placeholder="Job Type"
         onChange={(value) => setFilters({ ...filters, jobType: value })}
         optionLabelProp="jobType"
         options={jobTypeOptions}
@@ -58,7 +58,7 @@ const JobFilters = () => {
         mode="multiple"
         style={{ width: "100%", margin: "10px 0 10px 0" }}
         dropdownStyle={{ textAlign: "center" }}
-        placeholder="Select Industry"
+        placeholder="Industry"
         onChange={(value) => setFilters({ ...filters, industry: value })}
         optionLabelProp="industry"
         options={industryOptions}
