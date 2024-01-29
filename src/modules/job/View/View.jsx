@@ -1,9 +1,9 @@
 import { Card, Descriptions, List, Tag, Typography } from "antd";
-import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ErrorPage } from "../../../components";
+import apiInstance from "../../../services/api";
 import "./view.css";
 
 const { Title, Paragraph, Text } = Typography;
@@ -16,8 +16,7 @@ const View = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiUrl = `http://localhost:8080/jobs/${jobId}`;
-        const response = await axios.get(apiUrl);
+        const response = await apiInstance.get(`/jobs/${jobId}`);
         const jobData = response.data?.data;
 
         if (jobData.address) {

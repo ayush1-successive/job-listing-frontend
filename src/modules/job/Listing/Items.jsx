@@ -1,9 +1,9 @@
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, List, Popconfirm } from "antd";
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthenticationContext } from "../../../components/Account/Context";
+import apiInstance from "../../../services/api";
 import { ListingContext } from "./Context";
 
 const fields = [
@@ -55,7 +55,7 @@ const ItemsData = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/jobs/?`, {
+      const response = await apiInstance.get("/jobs/?", {
         params: {
           ...queryFilters(),
           page: currentPage,
@@ -81,7 +81,7 @@ const ItemsData = () => {
 
   const deleteJobListing = async (jobId) => {
     try {
-      await axios.delete(`http://localhost:8080/jobs/${jobId}`);
+      await apiInstance.delete(`/jobs/${jobId}`);
 
       setToFetch(true);
     } catch (error) {

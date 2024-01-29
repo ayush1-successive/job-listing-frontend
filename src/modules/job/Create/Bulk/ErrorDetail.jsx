@@ -1,8 +1,8 @@
 import { Card, Descriptions, Divider, Modal, Table, Typography } from "antd";
-import axios from "axios";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import apiInstance from "../../../../services/api";
 
 const ErrorDetail = (props) => {
   const { recordId, formatMilliseconds } = props;
@@ -26,9 +26,7 @@ const ErrorDetail = (props) => {
   useEffect(() => {
     const fetchErrorDetail = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/bulk-upload/${recordId}`
-        );
+        const response = await apiInstance.get(`bulk-upload/${recordId}`);
 
         const data = response.data.data;
         data.time = formatMilliseconds(data.time);

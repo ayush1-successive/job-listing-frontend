@@ -1,7 +1,7 @@
 import { Button, Col, List, Row, Statistic } from "antd";
-import axios from "axios";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import apiInstance from "../../../../services/api";
 import ErrorDetail from "./ErrorDetail";
 
 const fontStyle = {
@@ -53,7 +53,7 @@ const UploadHistory = (props) => {
   useEffect(() => {
     const fetchUploadHistory = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/bulk-upload", {
+        const response = await apiInstance.get("bulk-upload", {
           params: {
             page: currentPage,
             limit: 10,

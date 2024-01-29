@@ -1,8 +1,8 @@
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography, message, theme } from "antd";
-import axios from "axios";
 import React, { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import apiInstance from "../../services/api";
 import { getFormStyle } from "../styles/formStyle";
 import { AuthenticationContext } from "./Context";
 import FormHeader from "./Header";
@@ -48,18 +48,10 @@ const Register = () => {
   };
 
   const onFinish = async (values) => {
-    console.log("Received values of form: ", values);
-
-    const options = {
-      method: "POST",
-      url: "http://localhost:8080/users/register",
-      data: values,
-    };
-
-    delete options.data.confirmPassword;
+    const { confirmPassword, ...formData } = values;
 
     try {
-      await axios.request(options);
+      await apiInstance.post("/users/register", formData);
       displaySuccessMessage(
         "User successfully registered. Redirecting to login page.."
       );

@@ -1,8 +1,8 @@
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography, message, theme } from "antd";
-import axios from "axios";
 import React, { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import apiInstance from "../../services/api";
 import { getFormStyle } from "../styles/formStyle";
 import { AuthenticationContext } from "./Context";
 import FormHeader from "./Header";
@@ -30,10 +30,7 @@ const Login = () => {
 
   const onFinish = async (values) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/users/login",
-        values
-      );
+      const response = await apiInstance.post("/users/login", values);
 
       displayMessage("success", {
         message: "Login successful. Redirecting to Dashboard page..",

@@ -10,10 +10,10 @@ import {
   message,
   theme,
 } from "antd";
-import axios from "axios";
 import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import apiInstance from "../../services/api";
 import { AuthenticationContext } from "../Account/Context";
 import { getFormStyle } from "../styles/formStyle";
 import { domains, skills } from "./selectOptions";
@@ -53,11 +53,11 @@ const Profile = () => {
     });
   };
 
+  const generateUrl = () => `/users/${authData.userId}`;
+
   const fetchData = async () => {
     try {
-      const apiUrl = `http://localhost:8080/users/${authData.userId}`;
-
-      const response = await axios.get(apiUrl);
+      const response = await apiInstance.get(generateUrl());
       const profileData = response.data?.data;
 
       if (profileData.dateOfBirth) {
@@ -75,8 +75,7 @@ const Profile = () => {
     const profileData = form.getFieldsValue();
 
     try {
-      const apiUrl = `http://localhost:8080/users/${authData.userId}`;
-      await axios.put(apiUrl, profileData);
+      await apiInstance.put(generateUrl(), profileData);
 
       await fetchData();
       setEditMode(false);
@@ -94,8 +93,7 @@ const Profile = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      const apiUrl = `http://localhost:8080/users/${authData.userId}`;
-      await axios.delete(apiUrl);
+      await apiInstance.delete(generateUrl());
 
       displayMessage("success", {
         message:

@@ -14,9 +14,9 @@ import {
   Upload,
   message,
 } from "antd";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
+import apiInstance from "../../../../services/api";
 import UploadHistory from "./History";
 
 const formatter = (value) => <CountUp end={value} separator="," />;
@@ -64,7 +64,7 @@ const BulkUpload = () => {
 
   const fetchUploadCount = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/jobs/count");
+      const response = await apiInstance.get("/jobs/count");
 
       setJobListingCount(response?.data?.data.count);
     } catch (error) {
@@ -140,7 +140,10 @@ const BulkUpload = () => {
         <Typography.Title level={4}>Upload History</Typography.Title>
       </Divider>
 
-      <UploadHistory toFetchHistory={toFetchHistory} setToFetchHistory={setToFetchHistory} />
+      <UploadHistory
+        toFetchHistory={toFetchHistory}
+        setToFetchHistory={setToFetchHistory}
+      />
     </div>
   );
 };

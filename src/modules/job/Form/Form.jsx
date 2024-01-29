@@ -13,9 +13,9 @@ import {
   Typography,
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import axios from "axios";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
+import apiInstance from "../../../services/api";
 
 const formItemLayout = {
   labelCol: {
@@ -65,8 +65,7 @@ const JobForm = (props) => {
     };
 
     try {
-      const response = await axios.request(options);
-      console.log(response.data);
+      const response = await apiInstance.request(options);
 
       uploadSuccess();
     } catch (error) {

@@ -1,8 +1,8 @@
-import axios from "axios";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ErrorPage } from "../../../components";
+import apiInstance from "../../../services/api";
 import { JobForm } from "../Form";
 
 const Edit = () => {
@@ -19,8 +19,7 @@ const Edit = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiUrl = `http://localhost:8080/jobs/${jobId}`;
-        const response = await axios.get(apiUrl);
+        const response = await apiInstance.get(`/jobs/${jobId}`);
 
         const jobListing = response?.data?.data;
         jobListing.applicationDeadline = dayjs(jobListing.applicationDeadline);
