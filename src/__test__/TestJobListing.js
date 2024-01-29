@@ -38,7 +38,7 @@ class TestJobListing {
       await axios.delete(`http://localhost:8080/jobs/${this.testJobId}`);
       this.testJobId = "";
     } catch (error) {
-      console.log("error deleting fake user entry!", error.message);
+      console.log("error deleting fake job listing!", error.message);
     }
   };
 

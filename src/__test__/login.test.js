@@ -2,9 +2,9 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { AuthenticationWrapper, Login } from "../components/Account";
-import "./setupTests";
+import { Authentication, Login } from "../modules/user";
 import TestUser from "./TestUser";
+import "./setupTests";
 
 describe("Login Page Test", () => {
   let testUser;
@@ -23,11 +23,11 @@ describe("Login Page Test", () => {
 
   test("Form check", () => {
     render(
-      <AuthenticationWrapper>
+      <Authentication>
         <BrowserRouter>
           <Login />
         </BrowserRouter>
-      </AuthenticationWrapper>
+      </Authentication>
     );
 
     expect(
@@ -37,11 +37,11 @@ describe("Login Page Test", () => {
 
   test("form submission failed", async () => {
     render(
-      <AuthenticationWrapper>
+      <Authentication>
         <BrowserRouter>
           <Login />
         </BrowserRouter>
-      </AuthenticationWrapper>
+      </Authentication>
     );
 
     const emailElement = screen.getByLabelText("Email");
@@ -62,11 +62,11 @@ describe("Login Page Test", () => {
 
   test("form submission passed", async () => {
     render(
-      <AuthenticationWrapper>
+      <Authentication>
         <BrowserRouter>
           <Login />
         </BrowserRouter>
-      </AuthenticationWrapper>
+      </Authentication>
     );
 
     const emailElement = screen.getByLabelText("Email");

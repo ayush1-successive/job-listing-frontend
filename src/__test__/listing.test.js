@@ -4,8 +4,8 @@ import React from "react";
 import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
 import { View as JobView } from "../modules/job";
-import { AuthenticationWrapper } from "../components/Account";
 import { Listing } from "../modules/job/Listing";
+import { Authentication } from "../modules/user";
 import TestJobListing from "./TestJobListing";
 import TestUser from "./TestUser";
 import "./setupTests";
@@ -34,9 +34,9 @@ describe("Listing page Test", () => {
   test("SearchBar test", async () => {
     render(
       <BrowserRouter>
-        <AuthenticationWrapper>
+        <Authentication>
           <Listing />
-        </AuthenticationWrapper>
+        </Authentication>
       </BrowserRouter>
     );
 
@@ -55,9 +55,9 @@ describe("Listing page Test", () => {
   test("Filters test", async () => {
     render(
       <BrowserRouter>
-        <AuthenticationWrapper>
+        <Authentication>
           <Listing />
-        </AuthenticationWrapper>
+        </Authentication>
       </BrowserRouter>
     );
 
@@ -101,7 +101,7 @@ describe("Listing page Test", () => {
     );
 
     await waitFor(() => {
-      const title = 'Sorry, the page you are looking for does not exist.';
+      const title = "Sorry, the page you are looking for does not exist.";
       expect(screen.getByText(title)).toBeInTheDocument();
     });
   });

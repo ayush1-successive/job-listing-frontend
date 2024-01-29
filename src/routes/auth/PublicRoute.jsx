@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from "react";
-import { AuthenticationContext } from "../../components/Account/Context";
 import { MenuKeyContext } from "../../components/MenuKey/Context";
+import { AuthenticationContext } from '../../modules/user';
 import apiInstance from "../../services/api";
 
 const PublicRoute = ({ children }) => {

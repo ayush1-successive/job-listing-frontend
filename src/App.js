@@ -1,13 +1,13 @@
 import React from "react";
 import { MenuKey } from "./components";
-import { AuthenticationWrapper } from "./components/Account";
+import { Authentication } from "./modules/user";
 import { Router } from "./routes";
 
 const App = () => (
   <MenuKey>
-    <AuthenticationWrapper>
+    <Authentication>
       <Router />
-    </AuthenticationWrapper>
+    </Authentication>
   </MenuKey>
 );
 export default App;

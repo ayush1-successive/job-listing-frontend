@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { AuthenticationWrapper, Register } from "../components/Account";
+import { Authentication, Register } from "../modules/user";
 import TestUser from "./TestUser";
 import "./setupTests";
 
@@ -23,11 +23,11 @@ describe("Register Page Test", () => {
 
   test("form submission failed", async () => {
     render(
-      <AuthenticationWrapper>
+      <Authentication>
         <BrowserRouter>
           <Register />
         </BrowserRouter>
-      </AuthenticationWrapper>
+      </Authentication>
     );
 
     const nameElement = screen.getByLabelText("Name");
@@ -61,11 +61,11 @@ describe("Register Page Test", () => {
     await testUser.deleteFakeEntry();
 
     render(
-      <AuthenticationWrapper>
+      <Authentication>
         <BrowserRouter>
           <Register />
         </BrowserRouter>
-      </AuthenticationWrapper>
+      </Authentication>
     );
 
     const nameElement = screen.getByLabelText("Name");

@@ -1,12 +1,16 @@
-import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  LockOutlined,
+  MailOutlined,
+  UserAddOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Button, Form, Input, Typography, message } from "antd";
 import React, { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import apiInstance from "../../services/api";
-import { AuthenticationContext } from "./Context";
-import FormHeader from "./Header";
+import apiInstance from "../../../services/api";
+import { AuthenticationContext } from "../Authentication/Context";
 
-const { Text, Link } = Typography;
+const { Text, Link, Title } = Typography;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -68,10 +72,13 @@ const Register = () => {
       {contextHolder}
       <section className="form-section">
         <div className="form-container">
-          <FormHeader
-            headerTitle="Sign Up"
-            headerText="Welcome to JobNest! Please enter your details to get started."
-          />
+          <div className="form-header">
+            <UserAddOutlined className="form-icon" />
+            <Title className="form-title">Sign Up</Title>
+            <Text className="form-text">
+              Welcome to JobNest! Please enter your details to get started.
+            </Text>
+          </div>
           <Form
             aria-label="register-form"
             name="register"
@@ -159,7 +166,7 @@ const Register = () => {
                 Sign Up
               </Button>
               <div className="form-footer">
-                <Text className="form-text">Already have an account?</Text>{" "}
+                <Text className="form-text">Already have an account?</Text>
                 <Link href="/login">Sign in</Link>
               </div>
             </Form.Item>

@@ -2,8 +2,8 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, List, Popconfirm } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthenticationContext } from "../../../components/Account/Context";
 import apiInstance from "../../../services/api";
+import { AuthenticationContext } from "../../user";
 import { ListingContext } from "./Context";
 
 const fields = [
@@ -107,7 +107,7 @@ const ItemsData = () => {
           <List.Item
             key={item.title}
             extra={
-              <>
+              <div>
                 <Link to={`/jobs/${item._id}`}>
                   <Button
                     data-testid={`view-button-${index}`}
@@ -145,7 +145,7 @@ const ItemsData = () => {
                     </Popconfirm>
                   </>
                 )}
-              </>
+              </div>
             }
           >
             <List.Item.Meta

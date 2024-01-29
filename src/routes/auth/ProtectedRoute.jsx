@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { AuthenticationContext } from "../../components/Account/Context";
 import apiInstance from "../../services/api";
+import { AuthenticationContext } from '../../modules/user';
 
 const ProtectedRoute = ({ children }) => {
   const { setIsAuth, setAuthData } = useContext(AuthenticationContext);

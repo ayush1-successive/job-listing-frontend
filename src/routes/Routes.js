@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Dashboard, ErrorPage, Login, Profile, Register } from "../components";
-import { View as JobView, Edit as JobEdit } from "../modules/job";
+import { Dashboard, ErrorPage } from "../components";
+import { Edit as JobEdit, View as JobView } from "../modules/job";
+import { Login, Profile, Register } from "../modules/user";
 import { ProtectedRoute, PublicRoute } from "./auth";
 
 const Router = () => (

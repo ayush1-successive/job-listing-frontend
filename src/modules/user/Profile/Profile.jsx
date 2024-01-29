@@ -12,8 +12,8 @@ import {
 import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import apiInstance from "../../services/api";
-import { AuthenticationContext } from "../Account/Context";
+import apiInstance from "../../../services/api";
+import { AuthenticationContext } from "../Authentication/Context";
 import "./profile.css";
 import { domains, skills } from "./selectOptions";
 

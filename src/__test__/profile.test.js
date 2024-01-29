@@ -8,8 +8,7 @@ import {
 } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Profile } from "../components";
-import { AuthenticationContext } from "../components/Account/Context";
+import { AuthenticationContext, Profile } from "../modules/user";
 import TestUser from "./TestUser";
 import "./setupTests";
 

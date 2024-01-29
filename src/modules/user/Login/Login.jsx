@@ -1,12 +1,11 @@
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography, message } from "antd";
 import React, { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import apiInstance from "../../services/api";
-import { AuthenticationContext } from "./Context";
-import FormHeader from "./Header";
+import apiInstance from "../../../services/api";
+import { AuthenticationContext } from "../Authentication/Context";
 
-const { Text, Link } = Typography;
+const { Text, Link, Title } = Typography;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -51,11 +50,14 @@ const Login = () => {
       {contextHolder}
       <section className="form-section">
         <div className="form-container">
-          <FormHeader
-            headerTitle="Sign in"
-            headerText="Welcome back to JobNest UI! Please enter your details below to sign
-            in."
-          />
+          <div className="form-header">
+            <UserOutlined className="form-icon" />
+            <Title className="form-title">Sign in</Title>
+            <Text className="form-text">
+              Welcome back to JobNest UI! Please enter your details below to
+              sign in.
+            </Text>
+          </div>
           <Form
             aria-label="login-form"
             name="login"
