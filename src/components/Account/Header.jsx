@@ -1,13 +1,13 @@
-import PropTypes from "prop-types";
 import { Typography } from "antd";
+import PropTypes from "prop-types";
 
 const { Text, Title } = Typography;
 
 const FormHeader = (props) => {
-  const { styles, headerTitle, headerText } = props;
+  const { headerTitle, headerText } = props;
 
   return (
-    <div style={styles.header}>
+    <div className="form-header">
       <svg
         width="25"
         height="24"
@@ -26,18 +26,13 @@ const FormHeader = (props) => {
           fill="white"
         />
       </svg>
-      <Title style={styles.title}>{headerTitle}</Title>
-      <Text style={styles.text}>{headerText}</Text>
+      <Title className="form-title">{headerTitle}</Title>
+      <Text className="form-text">{headerText}</Text>
     </div>
   );
 };
 
 FormHeader.propTypes = {
-  styles: PropTypes.shape({
-    header: PropTypes.object.isRequired,
-    title: PropTypes.object.isRequired,
-    text: PropTypes.object.isRequired,
-  }).isRequired,
   headerTitle: PropTypes.string.isRequired,
   headerText: PropTypes.string.isRequired,
 };

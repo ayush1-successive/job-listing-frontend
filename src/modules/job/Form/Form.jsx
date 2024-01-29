@@ -16,6 +16,7 @@ import TextArea from "antd/es/input/TextArea";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import apiInstance from "../../../services/api";
+import "./form.css";
 
 const formItemLayout = {
   labelCol: {
@@ -65,7 +66,7 @@ const JobForm = (props) => {
     };
 
     try {
-      const response = await apiInstance.request(options);
+      await apiInstance.request(options);
 
       uploadSuccess();
     } catch (error) {
@@ -160,7 +161,7 @@ const JobForm = (props) => {
         <Col lg={12} md={8} xs={24}>
           <Form.Item name={["salary"]} label="Salary">
             <InputNumber
-              style={{ width: "100%" }}
+              className="form-InputNumber"
               placeholder="Salary amount..."
               prefix="₹"
               suffix="annually"
@@ -176,11 +177,11 @@ const JobForm = (props) => {
                 return (
                   <>
                     {fields.map((field, index) => (
-                      <div key={field.key} style={{ display: "flex" }}>
+                      <div key={field.key} className="form-ListItem">
                         <Form.Item
                           name={[index]}
                           rules={[{ required: true }]}
-                          style={{ width: "100%" }}
+                          className="form-InputNumber"
                         >
                           <Input />
                         </Form.Item>
@@ -216,11 +217,11 @@ const JobForm = (props) => {
                 return (
                   <>
                     {fields.map((field, index) => (
-                      <div key={field.key} style={{ display: "flex" }}>
+                      <div key={field.key} className="form-ListItem">
                         <Form.Item
                           name={[index]}
                           rules={[{ required: true }]}
-                          style={{ width: "100%" }}
+                          className="form-InputNumber"
                         >
                           <Input />
                         </Form.Item>
@@ -305,7 +306,7 @@ const JobForm = (props) => {
             label="Min Experience"
           >
             <InputNumber
-              style={{ width: "100%" }}
+              className="form-InputNumber"
               placeholder="Min experience needed(years)..."
             />
           </Form.Item>
@@ -316,7 +317,7 @@ const JobForm = (props) => {
             label="Max Experience"
           >
             <InputNumber
-              style={{ width: "100%" }}
+              className="form-InputNumber"
               placeholder="Max experience needed(years)..."
             />
           </Form.Item>
@@ -339,7 +340,7 @@ const JobForm = (props) => {
               },
             ]}
           >
-            <DatePicker style={{ width: "100%" }} />
+            <DatePicker className="form-InputNumber" />
           </Form.Item>
         </Col>
 

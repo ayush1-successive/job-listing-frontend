@@ -18,6 +18,7 @@ import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import apiInstance from "../../../../services/api";
 import UploadHistory from "./History";
+import "./bulk.css";
 
 const formatter = (value) => <CountUp end={value} separator="," />;
 
@@ -87,34 +88,22 @@ const BulkUpload = () => {
 
   return (
     <div>
-      <Row gutter={12} style={{ justifyContent: "center", marginBottom: 20 }}>
+      <Row gutter={12} className="count-container">
         <Col span={5}>
-          <Card
-            bordered={false}
-            hoverable
-            style={{ backgroundColor: "rgba(0, 0, 0, 0.02)" }}
-          >
+          <Card bordered={false} hoverable>
             <Statistic
               title="Active Job Listings"
               value={jobListingCount}
               formatter={formatter}
-              valueStyle={{ color: "#3f8600" }}
+              valueStyle={{ color: "green" }}
               prefix={<ArrowUpOutlined />}
               suffix={
                 loading ? (
-                  <Spin style={{ fontSize: 20, marginLeft: 12 }} />
+                  <Spin className="spin-icon" />
                 ) : (
                   <ReloadOutlined
                     onClick={handleReload}
-                    style={{
-                      fontSize: 20,
-                      marginLeft: 12,
-                      color: "black",
-                      cursor: "pointer",
-                      transition: "color 0.3s",
-                    }}
-                    onMouseEnter={(e) => (e.target.style.color = "blue")}
-                    onMouseLeave={(e) => (e.target.style.color = "black")}
+                    className="reload-btn"
                   />
                 )
               }

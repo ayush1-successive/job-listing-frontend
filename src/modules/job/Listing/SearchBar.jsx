@@ -6,14 +6,7 @@ const SearchBox = () => {
   const { setToFetch, filters, setFilters } = useContext(ListingContext);
 
   return (
-    <div
-      style={{
-        marginBottom: 10,
-        display: "flex",
-        justifyContent: "center",
-        borderRadius: "12px",
-      }}
-    >
+    <div className="filter-searchbar">
       <Input.Search
         placeholder="Search jobs by Title..."
         enterButton={
@@ -24,10 +17,7 @@ const SearchBox = () => {
         onPressEnter={() => setToFetch(true)}
         size="large"
         onChange={(e) => setFilters({ ...filters, title: e.target.value })}
-        style={{
-          border: "none",
-          width: "80%",
-        }}
+        style={{ width: "80%" }}
         value={filters.title}
       />
     </div>

@@ -16,14 +16,6 @@ const fields = [
   "description",
 ];
 
-const buttonStyle = {
-  fontSize: "22px",
-  height: "auto",
-  width: "auto",
-  color: "#1e5fd6",
-  margin: "8px",
-};
-
 const ItemsData = () => {
   const { isAuth } = useContext(AuthenticationContext);
 
@@ -96,11 +88,11 @@ const ItemsData = () => {
   };
 
   return (
-    <div style={{ padding: 20, minHeight: "80vh" }}>
+    <div className="item-container">
       <List
         itemLayout="vertical"
         size="small"
-        style={{ width: "90%" }}
+        className="items-list"
         pagination={{
           size: "small",
           align: "center",
@@ -115,11 +107,11 @@ const ItemsData = () => {
           <List.Item
             key={item.title}
             extra={
-              <div style={{ display: "flex", flexDirection: "row" }}>
+              <>
                 <Link to={`/jobs/${item._id}`}>
                   <Button
                     data-testid={`view-button-${index}`}
-                    style={buttonStyle}
+                    className="item-btn"
                   >
                     <EyeOutlined />
                   </Button>
@@ -130,7 +122,7 @@ const ItemsData = () => {
                     <Link to={`/edit/${item._id}`}>
                       <Button
                         data-testid={`edit-button-${index}`}
-                        style={buttonStyle}
+                        className="item-btn"
                       >
                         <EditOutlined />
                       </Button>
@@ -146,23 +138,19 @@ const ItemsData = () => {
                     >
                       <Button
                         data-testid={`delete-button-${index}`}
-                        style={buttonStyle}
+                        className="item-btn"
                       >
                         <DeleteOutlined />
                       </Button>
                     </Popconfirm>
                   </>
                 )}
-              </div>
+              </>
             }
           >
             <List.Item.Meta
               avatar={
-                <img
-                  alt="Logo"
-                  src={item.logo}
-                  style={{ width: "96px", height: "96px" }}
-                />
+                <img alt="Logo" src={item.logo} className="items-avatar" />
               }
               title={item.title}
               description={

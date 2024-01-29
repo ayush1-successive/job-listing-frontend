@@ -1,21 +1,16 @@
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Typography, message, theme } from "antd";
+import { Button, Form, Input, Typography, message } from "antd";
 import React, { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import apiInstance from "../../services/api";
-import { getFormStyle } from "../styles/formStyle";
 import { AuthenticationContext } from "./Context";
 import FormHeader from "./Header";
 
-const { useToken } = theme;
 const { Text, Link } = Typography;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Register = () => {
-  const { token } = useToken();
-  const styles = getFormStyle(token);
-
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const { isAuth } = useContext(AuthenticationContext);
@@ -71,10 +66,9 @@ const Register = () => {
   return (
     <>
       {contextHolder}
-      <section style={styles.section}>
-        <div style={styles.container}>
+      <section className="form-section">
+        <div className="form-container">
           <FormHeader
-            styles={styles}
             headerTitle="Sign Up"
             headerText="Welcome to JobNest! Please enter your details to get started."
           />
@@ -160,12 +154,12 @@ const Register = () => {
               />
             </Form.Item>
 
-            <Form.Item style={{ marginBottom: "0px" }}>
+            <Form.Item>
               <Button block="true" type="primary" htmlType="submit">
                 Sign Up
               </Button>
-              <div style={styles.footer}>
-                <Text style={styles.text}>Already have an account?</Text>{" "}
+              <div className="form-footer">
+                <Text className="form-text">Already have an account?</Text>{" "}
                 <Link href="/login">Sign in</Link>
               </div>
             </Form.Item>

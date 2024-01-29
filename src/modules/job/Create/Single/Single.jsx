@@ -1,5 +1,6 @@
 import React from "react";
 import { JobForm } from "../../Form";
+import "./single.css";
 
 const SingleUpload = () => {
   const uploadSuccess = () => {
@@ -7,7 +8,7 @@ const SingleUpload = () => {
   };
 
   return (
-    <div style={{ maxWidth: "80%", margin: "auto" }}>
+    <div className="singleUploadForm">
       <JobForm
         formHeading={"Create JobListing"}
         submitMessage="Create Job"

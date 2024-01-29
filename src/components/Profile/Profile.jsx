@@ -8,18 +8,16 @@ import {
   Select,
   Typography,
   message,
-  theme,
 } from "antd";
 import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiInstance from "../../services/api";
 import { AuthenticationContext } from "../Account/Context";
-import { getFormStyle } from "../styles/formStyle";
+import "./profile.css";
 import { domains, skills } from "./selectOptions";
 
 const { Option } = Select;
-const { useToken } = theme;
 
 const skillOptions = Object.values(skills).map((value) => ({
   label: value,
@@ -36,9 +34,6 @@ const domainOptions = Object.values(domains).map((value) => ({
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Profile = () => {
-  const { token } = useToken();
-  const styles = getFormStyle(token);
-
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [editMode, setEditMode] = useState(false);
@@ -114,14 +109,14 @@ const Profile = () => {
   return (
     <>
       {contextHolder}
-      <section style={{ ...styles.section, height: "auto" }}>
-        <div style={{ ...styles.container, width: "700px" }}>
-          <div style={{ marginBottom: 20, textAlign: "center" }}>
-            <Typography.Title style={styles.title}>
+      <section className="profile-section">
+        <div className="profile-container">
+          <div className="profile-title">
+            <Typography.Title style={{ fontSize: 32 }}>
               Profile Page
             </Typography.Title>
           </div>
-          <div style={{ ...styles.header, textAlign: "right" }}>
+          <div className="profile-header">
             {editMode ? (
               <>
                 <Button onClick={handleSave} type="primary">

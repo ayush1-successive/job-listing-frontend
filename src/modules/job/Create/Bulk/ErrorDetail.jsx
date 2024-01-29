@@ -3,16 +3,13 @@ import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import apiInstance from "../../../../services/api";
+import "./bulk.css";
 
 const ErrorDetail = (props) => {
   const { recordId, formatMilliseconds } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const [errorData, setErrorData] = useState({});
-
-  const fontStyle = {
-    fontSize: "15px",
-  };
 
   const column = [
     { title: "Row Number", dataIndex: "rowNumber", key: "rowNumber" },
@@ -63,40 +60,40 @@ const ErrorDetail = (props) => {
         onCancel={handleOk}
         width={"60%"}
       >
-        <Card style={{ fontSize: "15px" }}>
+        <Card>
           <Descriptions bordered column={1}>
-            <Descriptions.Item label="Filename" style={fontStyle}>
+            <Descriptions.Item label="Filename" className="bulk-text">
               {errorData.filename}
             </Descriptions.Item>
-            <Descriptions.Item label="Status" style={fontStyle}>
+            <Descriptions.Item label="Status" className="bulk-text">
               {errorData.status}
             </Descriptions.Item>
-            <Descriptions.Item label="Time" style={fontStyle}>
+            <Descriptions.Item label="Time" className="bulk-text">
               {errorData.time}
             </Descriptions.Item>
-            <Descriptions.Item label="Status" style={fontStyle}>
+            <Descriptions.Item label="Status" className="bulk-text">
               {errorData.status}
             </Descriptions.Item>
-            <Descriptions.Item label="Successful Entries" style={fontStyle}>
+            <Descriptions.Item label="Successful Entries" className="bulk-text">
               {errorData.successfulEntries}
             </Descriptions.Item>
-            <Descriptions.Item label="Failed Entries" style={fontStyle}>
+            <Descriptions.Item label="Failed Entries" className="bulk-text">
               {errorData.failedEntries}
             </Descriptions.Item>
-            <Descriptions.Item label="Entries Completed" style={fontStyle}>
+            <Descriptions.Item label="Entries Completed" className="bulk-text">
               {errorData.entriesCompleted}
             </Descriptions.Item>
-            <Descriptions.Item label="Total Entries" style={fontStyle}>
+            <Descriptions.Item label="Total Entries" className="bulk-text">
               {errorData.totalEntries}
             </Descriptions.Item>
-            <Descriptions.Item label="createdAt" style={fontStyle}>
+            <Descriptions.Item label="createdAt" className="bulk-text">
               {errorData.createdAt}
             </Descriptions.Item>
-            <Descriptions.Item label="updatedAt" style={fontStyle}>
+            <Descriptions.Item label="updatedAt" className="bulk-text">
               {errorData.updatedAt}
             </Descriptions.Item>
             {errorData.endedAt && (
-              <Descriptions.Item label="endedAt" style={fontStyle}>
+              <Descriptions.Item label="endedAt" className="bulk-text">
                 {errorData.endedAt}
               </Descriptions.Item>
             )}

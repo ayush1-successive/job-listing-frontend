@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Create as JobCreate, Listing as JobListing } from "../../modules/job";
 import { AuthenticationContext } from "../Account/Context";
 import { MenuKeyContext } from "../MenuKey/Context";
+import "./dashboard.css";
 
 const navbarItems = [
   { key: "jobs", label: <strong>Jobs</strong> },
@@ -52,39 +53,21 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            width: 200,
-            fontSize: 22,
-            fontWeight: "bolder",
-            color: "white",
-          }}
-        >
-          JobNest
-        </div>
+      <Header className="dashboard-header">
+        <div className="dashboard-logo">JobNest</div>
         <Menu
           theme="dark"
           mode="horizontal"
           items={navbarItems}
           selectedKeys={dashboardMenuKey}
-          style={{ flex: 1, minWidth: 0 }}
+          className="dashboard-menu"
           onClick={handleMenuKey}
         />
         <Menu mode={"horizontal"} items={rightMenuItems} />
       </Header>
       <Content>{componentMap[dashboardMenuKey]}</Content>
-      <Footer style={{ textAlign: "center" }}>
-        <div
-          style={{ transition: "color 0.3s" }}
-          onMouseEnter={(e) => (e.target.style.color = "blue")}
-          onMouseLeave={(e) => (e.target.style.color = "black")}
-        >
+      <Footer className="dashboard-footer">
+        <div className="dashboard-footer-text">
           JobNest ©{new Date().getFullYear()} Created by Ayush Sinha
         </div>
       </Footer>

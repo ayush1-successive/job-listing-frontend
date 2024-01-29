@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ErrorPage } from "../../../components";
 import apiInstance from "../../../services/api";
 import { JobForm } from "../Form";
+import "./edit.css";
 
 const Edit = () => {
   const { jobId } = useParams();
@@ -38,7 +39,7 @@ const Edit = () => {
     return <ErrorPage />;
   }
   return (
-    <div style={{ maxWidth: "80%", margin: "auto" }}>
+    <div className="editUploadForm">
       <JobForm
         formHeading={"Edit JobListing"}
         jobListing={jobListing}

@@ -40,11 +40,11 @@ const JobFilters = () => {
   const formatter = (value) => `${value} lpa`;
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className="filter-container">
       <Title level={5}>Select Job Type</Title>
       <Select
         mode="multiple"
-        style={{ width: "100%" }}
+        className="select-container"
         dropdownStyle={{ textAlign: "center" }}
         placeholder="Job Type"
         onChange={(value) => setFilters({ ...filters, jobType: value })}
@@ -56,7 +56,7 @@ const JobFilters = () => {
       <Title level={5}>Select Industry</Title>
       <Select
         mode="multiple"
-        style={{ width: "100%", margin: "10px 0 10px 0" }}
+        className="select-container"
         dropdownStyle={{ textAlign: "center" }}
         placeholder="Industry"
         onChange={(value) => setFilters({ ...filters, industry: value })}
@@ -66,27 +66,23 @@ const JobFilters = () => {
       />
 
       <Title level={5}>Set salary range</Title>
-      <div style={{ padding: "0 15px" }}>
-        <Slider
-          range
-          marks={{ 2: "2 lpa", 50: "50 lpa" }}
-          tooltip={{ formatter }}
-          onChange={(value) => setFilters({ ...filters, salary: value })}
-          min={2}
-          max={50}
-          value={filters.salary}
-        />
-      </div>
+      <Slider
+        range
+        marks={{ 2: "2 lpa", 50: "50 lpa" }}
+        tooltip={{ formatter }}
+        onChange={(value) => setFilters({ ...filters, salary: value })}
+        min={2}
+        max={50}
+        value={filters.salary}
+      />
 
-      <div style={{ textAlign: "center", margin: "60px 0 10px 0" }}>
-        <Button
-          onClick={applyFilters}
-          type="primary"
-          style={{ marginRight: 10 }}
-        >
+      <div className="filter-btn-container">
+        <Button onClick={applyFilters} type="primary">
           Apply Filters
         </Button>
-        <Button onClick={clearFilters}>Reset Filters</Button>
+        <Button onClick={clearFilters} style={{ marginLeft: 10 }}>
+          Reset Filters
+        </Button>
       </div>
     </div>
   );

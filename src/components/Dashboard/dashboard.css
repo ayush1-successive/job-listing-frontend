@@ -1,0 +1,29 @@
+.dashboard-header {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-logo {
+  width: 200px;
+  font-size: 22px;
+  font-weight: bolder;
+  color: white;
+}
+
+.dashboard-menu {
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-footer {
+  text-align: center;
+}
+
+.dashboard-footer-text {
+  color: black;
+  transition: color 0.3s;
+}
+
+.dashboard-footer-text:hover {
+  color: blue;
+}

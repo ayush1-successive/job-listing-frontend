@@ -4,14 +4,11 @@ import React, { useContext } from "react";
 import { MenuKeyContext } from "../../../components/MenuKey/Context";
 import { BulkUpload } from "./Bulk";
 import { SingleUpload } from "./Single";
+import "./create.css";
 
 const { Content, Sider } = Layout;
 
 const Create = () => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
   const { uploadMenuKey, setUploadMenuKey } = useContext(MenuKeyContext);
 
   const sidebarItems = [
@@ -38,34 +35,18 @@ const Create = () => {
   };
 
   return (
-    <Content style={{ padding: 12 }}>
-      <Layout>
-        <Sider
-          style={{
-            background: colorBgContainer,
-            borderRadius: 12,
-            marginRight: "10px",
-          }}
-          width={220}
-        >
+    <Content className="create-container">
+      <Layout className="create-inner-layout">
+        <Sider className="create-sider" width={220}>
           <Menu
             items={sidebarItems}
             selectedKeys={uploadMenuKey}
             onClick={handleMenuKey}
-            style={{
-              height: "100vh",
-              display: "flex",
-              flexDirection: "column",
-            }}
+            className="create-sider-menu"
           />
         </Sider>
 
-        <Content
-          style={{
-            background: colorBgContainer,
-            borderRadius: 12,
-          }}
-        >
+        <Content className="create-content">
           {componentMap[uploadMenuKey]}
         </Content>
       </Layout>

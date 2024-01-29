@@ -40,110 +40,108 @@ const View = () => {
   }
 
   return (
-    <Card
-      title={`${jobListing.title} (${jobListing.company})`}
-      extra={
-        <img
-          src={jobListing.logo}
-          alt={`${jobListing.title} Logo`}
-          style={{ maxHeight: 50 }}
-        />
-      }
-      style={{ width: "70%", margin: "auto", fontSize: "15px" }}
-    >
-      <Descriptions bordered column={2}>
-        <Descriptions.Item label="Job Type" style={{ fontSize: "15px" }}>
-          {jobListing.jobType}
-        </Descriptions.Item>
-        <Descriptions.Item label="Industry" style={{ fontSize: "15px" }}>
-          {jobListing.industry}
-        </Descriptions.Item>
-        <Descriptions.Item label="Salary" style={{ fontSize: "15px" }}>
-          {`₹ ${jobListing.salary} lpa`}
-        </Descriptions.Item>
-        <Descriptions.Item label="Location" style={{ fontSize: "15px" }}>
-          {jobListing.address}
-        </Descriptions.Item>
-        <Descriptions.Item label="Remote" style={{ fontSize: "15px" }}>
-          {jobListing.isRemote ? "Yes" : "No"}
-        </Descriptions.Item>
-        <Descriptions.Item
-          label="Application Deadline"
-          style={{ fontSize: "15px" }}
-        >
-          {dayjs(jobListing.applicationDeadline).format("Do MMMM, YYYY")}
-        </Descriptions.Item>
-      </Descriptions>
-
-      <Title level={3}>Job Description</Title>
-      <Paragraph style={{ fontSize: "15px" }}>
-        {jobListing.description}
-      </Paragraph>
-
-      <Title level={3}>Qualifications</Title>
-      <Descriptions bordered column={2}>
-        <Descriptions.Item label="Min Education" style={{ fontSize: "15px" }}>
-          {jobListing.qualifications?.education}
-        </Descriptions.Item>
-        <Descriptions.Item label="Skills" style={{ fontSize: "15px" }}>
-          {jobListing.qualifications?.skills?.map((skill) => (
-            <Tag style={{ fontSize: "15px" }} key={`${skill}`}>
-              {skill}
-            </Tag>
-          ))}
-        </Descriptions.Item>
-        <Descriptions.Item label="Min Experience" style={{ fontSize: "15px" }}>
-          {jobListing.qualifications?.minExperience} years
-        </Descriptions.Item>
-        <Descriptions.Item label="Max Experience" style={{ fontSize: "15px" }}>
-          {jobListing.qualifications?.maxExperience} years
-        </Descriptions.Item>
-      </Descriptions>
-
-      {jobListing.requirements?.length > 0 && (
-        <>
-          <Title level={3}>Requirements</Title>
-          <List
-            dataSource={jobListing.requirements}
-            renderItem={(requirement) => (
-              <List.Item className="hover-highlight">
-                <Text style={{ fontSize: "15px" }}>{requirement}</Text>
-              </List.Item>
-            )}
+    <div className="view-container">
+      <Card
+        title={`${jobListing.title} (${jobListing.company})`}
+        extra={
+          <img
+            src={jobListing.logo}
+            alt={`${jobListing.title} Logo`}
+            style={{ maxHeight: 50 }}
           />
-        </>
-      )}
+        }
+        style={{ borderRadius: 12 }}
+        className="view-card"
+      >
+        <Descriptions bordered column={2}>
+          <Descriptions.Item label="Job Type" className="view-text">
+            {jobListing.jobType}
+          </Descriptions.Item>
+          <Descriptions.Item label="Industry" className="view-text">
+            {jobListing.industry}
+          </Descriptions.Item>
+          <Descriptions.Item label="Salary" className="view-text">
+            {`₹ ${jobListing.salary} lpa`}
+          </Descriptions.Item>
+          <Descriptions.Item label="Location" className="view-text">
+            {jobListing.address}
+          </Descriptions.Item>
+          <Descriptions.Item label="Remote" className="view-text">
+            {jobListing.isRemote ? "Yes" : "No"}
+          </Descriptions.Item>
+          <Descriptions.Item label="Application Deadline" className="view-text">
+            {dayjs(jobListing.applicationDeadline).format("Do MMMM, YYYY")}
+          </Descriptions.Item>
+        </Descriptions>
 
-      {jobListing.responsibilities?.length > 0 && (
-        <>
-          <Title level={3}>Responsibilities</Title>
-          <List
-            dataSource={jobListing.responsibilities}
-            renderItem={(responsibility) => (
-              <List.Item className="hover-highlight">
-                <Text style={{ fontSize: "15px" }}>{responsibility}</Text>
-              </List.Item>
-            )}
-          />
-        </>
-      )}
+        <Title level={3}>Job Description</Title>
+        <Paragraph className="view-text">{jobListing.description}</Paragraph>
 
-      <Title level={3}>Contact Information</Title>
-      <Paragraph style={{ fontSize: "15px" }}>
-        Email: {jobListing.contactEmail}
-      </Paragraph>
+        <Title level={3}>Qualifications</Title>
+        <Descriptions bordered column={2}>
+          <Descriptions.Item label="Min Education" className="view-text">
+            {jobListing.qualifications?.education}
+          </Descriptions.Item>
+          <Descriptions.Item label="Skills" className="view-text">
+            {jobListing.qualifications?.skills?.map((skill) => (
+              <Tag className="view-text" key={`${skill}`}>
+                {skill}
+              </Tag>
+            ))}
+          </Descriptions.Item>
+          <Descriptions.Item label="Min Experience" className="view-text">
+            {jobListing.qualifications?.minExperience} years
+          </Descriptions.Item>
+          <Descriptions.Item label="Max Experience" className="view-text">
+            {jobListing.qualifications?.maxExperience} years
+          </Descriptions.Item>
+        </Descriptions>
 
-      <Title level={3}>Apply Now</Title>
-      {jobListing.applicationLink ? (
-        <Link to={jobListing.applicationLink} style={{ fontSize: "15px" }}>
-          Apply Here
-        </Link>
-      ) : (
-        <Paragraph style={{ fontSize: "15px" }}>
-          No application link provided.
+        {jobListing.requirements?.length > 0 && (
+          <>
+            <Title level={3}>Requirements</Title>
+            <List
+              dataSource={jobListing.requirements}
+              renderItem={(requirement) => (
+                <List.Item className="hover-highlight">
+                  <Text className="view-text">{requirement}</Text>
+                </List.Item>
+              )}
+            />
+          </>
+        )}
+
+        {jobListing.responsibilities?.length > 0 && (
+          <>
+            <Title level={3}>Responsibilities</Title>
+            <List
+              dataSource={jobListing.responsibilities}
+              renderItem={(responsibility) => (
+                <List.Item className="hover-highlight">
+                  <Text className="view-text">{responsibility}</Text>
+                </List.Item>
+              )}
+            />
+          </>
+        )}
+
+        <Title level={3}>Contact Information</Title>
+        <Paragraph className="view-text">
+          Email: {jobListing.contactEmail}
         </Paragraph>
-      )}
-    </Card>
+
+        <Title level={3}>Apply Now</Title>
+        {jobListing.applicationLink ? (
+          <Link to={jobListing.applicationLink} className="view-text">
+            Apply Here
+          </Link>
+        ) : (
+          <Paragraph className="view-text">
+            No application link provided.
+          </Paragraph>
+        )}
+      </Card>
+    </div>
   );
 };
 
