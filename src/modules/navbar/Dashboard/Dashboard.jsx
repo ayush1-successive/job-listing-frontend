@@ -2,8 +2,8 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Layout, Menu } from "antd";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Create as JobCreate, Listing as JobListing } from "../../modules/job";
-import { AuthenticationContext } from "../../modules/user";
+import { Create as JobCreate, Listing as JobListing } from "../../job";
+import { AuthenticationContext } from "../../user";
 import { MenuKeyContext } from "../MenuKey/Context";
 import "./dashboard.css";
 

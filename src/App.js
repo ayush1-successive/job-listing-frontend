@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuKey } from "./components";
+import { MenuKey } from "./modules/navbar";
 import { Authentication } from "./modules/user";
 import { Router } from "./routes";
 

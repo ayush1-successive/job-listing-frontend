@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { MenuKey } from "../components/MenuKey";
+import { MenuKey } from "../modules/navbar";
 import { Create as JobCreate } from "../modules/job/Create";
 import "./setupTests";
 
