@@ -1,23 +1,25 @@
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Form, message } from "antd";
+import dayjs from "dayjs";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   DatePicker,
   Divider,
-  Form,
+  FormItem,
+  FormList,
   Input,
   Select,
-  Typography,
-  message,
-} from "antd";
-import dayjs from "dayjs";
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+  SelectOption,
+  Text,
+  TextArea,
+  Title,
+} from "../../../components";
+import { MinusCircleOutlined, PlusOutlined } from "../../../components/Icons";
 import apiInstance from "../../../services/api";
 import { AuthenticationContext } from "../Authentication/Context";
 import "./profile.css";
 import { domains, skills } from "./selectOptions";
-
-const { Option } = Select;
 
 const skillOptions = Object.values(skills).map((value) => ({
   label: value,
@@ -53,6 +55,7 @@ const Profile = () => {
   const fetchData = async () => {
     try {
       const response = await apiInstance.get(generateUrl());
+
       const profileData = response.data?.data;
 
       if (profileData.dateOfBirth) {
@@ -112,9 +115,7 @@ const Profile = () => {
       <section className="profile-section">
         <div className="profile-container">
           <div className="profile-title">
-            <Typography.Title style={{ fontSize: 32 }}>
-              Profile Page
-            </Typography.Title>
+            <Title style={{ fontSize: 32 }}>Profile Page</Title>
           </div>
           <div className="profile-header">
             {editMode ? (
@@ -139,7 +140,7 @@ const Profile = () => {
             layout="vertical"
             disabled={!editMode}
           >
-            <Form.Item
+            <FormItem
               name="name"
               label="Your full name ?"
               rules={[
@@ -150,41 +151,41 @@ const Profile = () => {
               ]}
             >
               <Input />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item label="Email" name="email" rules={[{ required: true }]}>
+            <FormItem label="Email" name="email" rules={[{ required: true }]}>
               <Input disabled={true} />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item name="dateOfBirth" label="Date Of Birth">
+            <FormItem name="dateOfBirth" label="Date Of Birth">
               <DatePicker />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item name="gender" label="Gender">
+            <FormItem name="gender" label="Gender">
               <Select placeholder="Select gender" allowClear>
-                <Option value="male">male</Option>
-                <Option value="female">female</Option>
-                <Option value="other">other</Option>
+                <SelectOption value="male">male</SelectOption>
+                <SelectOption value="female">female</SelectOption>
+                <SelectOption value="other">other</SelectOption>
               </Select>
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item name="phoneNumber" label="Phone Number">
+            <FormItem name="phoneNumber" label="Phone Number">
               <Input />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item name="summary" label="Summary">
-              <Input.TextArea rows={6} />
-            </Form.Item>
+            <FormItem name="summary" label="Summary">
+              <TextArea rows={6} />
+            </FormItem>
 
-            <Form.Item name="skills" label="Skills" rules={[{ type: "array" }]}>
+            <FormItem name="skills" label="Skills" rules={[{ type: "array" }]}>
               <Select
                 mode="multiple"
                 placeholder="Please select skills"
                 options={skillOptions}
               />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item
+            <FormItem
               name="domains"
               label="Which domain are you interested in working?"
               rules={[{ type: "array" }]}
@@ -194,22 +195,22 @@ const Profile = () => {
                 placeholder="Type Domain"
                 options={domainOptions}
               />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item name="achievements" label="Add Achievements">
-              <Form.List name="achievements">
+            <FormItem name="achievements" label="Add Achievements">
+              <FormList name="achievements">
                 {(fields, { add, remove }) => {
                   return (
                     <>
                       {fields.map((field, index) => (
                         <div key={field.key} style={{ display: "flex" }}>
-                          <Form.Item
+                          <FormItem
                             name={[index]}
                             rules={[{ required: true }]}
                             style={{ width: "95%" }}
                           >
                             <Input />
-                          </Form.Item>
+                          </FormItem>
 
                           <Button
                             type="danger"
@@ -218,7 +219,7 @@ const Profile = () => {
                           />
                         </div>
                       ))}
-                      <Form.Item>
+                      <FormItem>
                         <Button
                           type="dashed"
                           onClick={() => add()}
@@ -227,22 +228,22 @@ const Profile = () => {
                         >
                           Add achievement
                         </Button>
-                      </Form.Item>
+                      </FormItem>
                     </>
                   );
                 }}
-              </Form.List>
-            </Form.Item>
+              </FormList>
+            </FormItem>
           </Form>
 
           <Divider orientation="left" orientationMargin={20}>
-            <Typography.Title level={5}>Delete Account</Typography.Title>
+            <Title level={5}>Delete Account</Title>
           </Divider>
-          <Typography.Text style={{ display: "block" }}>
+          <Text style={{ display: "block" }}>
             Are you sure you want to delete your account? This action is
             irreversible and will permanently delete all your data associated
             with this account.
-          </Typography.Text>
+          </Text>
           <Button
             type="primary"
             danger

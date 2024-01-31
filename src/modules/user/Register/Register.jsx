@@ -1,16 +1,23 @@
+import { message } from "antd";
+import React, { useContext } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import {
+  Button,
+  Form,
+  FormItem,
+  Input,
+  InputPassword,
+  Text,
+  Title,
+} from "../../../components";
 import {
   LockOutlined,
   MailOutlined,
   UserAddOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import { Button, Form, Input, Typography, message } from "antd";
-import React, { useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+} from "../../../components/Icons";
 import apiInstance from "../../../services/api";
 import { AuthenticationContext } from "../Authentication/Context";
-
-const { Text, Link, Title } = Typography;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -86,7 +93,7 @@ const Register = () => {
             layout="vertical"
             requiredMark="optional"
           >
-            <Form.Item
+            <FormItem
               name="name"
               label="Name"
               rules={[
@@ -98,9 +105,9 @@ const Register = () => {
               hasFeedback
             >
               <Input prefix={<UserOutlined />} placeholder="Name" />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item
+            <FormItem
               name="email"
               label="Email"
               rules={[
@@ -113,8 +120,8 @@ const Register = () => {
               hasFeedback
             >
               <Input prefix={<MailOutlined />} placeholder="Email" />
-            </Form.Item>
-            <Form.Item
+            </FormItem>
+            <FormItem
               name="password"
               label="Password"
               rules={[
@@ -124,14 +131,14 @@ const Register = () => {
                 },
               ]}
             >
-              <Input.Password
+              <InputPassword
                 prefix={<LockOutlined />}
                 type="password"
                 placeholder="Password"
               />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item
+            <FormItem
               name="confirmPassword"
               label="Confirm Password"
               dependencies={["password"]}
@@ -154,22 +161,22 @@ const Register = () => {
                 }),
               ]}
             >
-              <Input.Password
+              <InputPassword
                 prefix={<LockOutlined />}
                 type="password"
                 placeholder="Password"
               />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item>
+            <FormItem>
               <Button block="true" type="primary" htmlType="submit">
                 Sign Up
               </Button>
               <div className="form-footer">
                 <Text className="form-text">Already have an account?</Text>
-                <Link href="/login">Sign in</Link>
+                <Link to="/login">Sign in</Link>
               </div>
-            </Form.Item>
+            </FormItem>
           </Form>
         </div>
       </section>

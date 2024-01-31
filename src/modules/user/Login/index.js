@@ -1,1 +1,5 @@
-export { default as Login } from "./Login";
+import { lazy } from "react";
+
+const Login = lazy(() => import("./Login"));
+
+export { Login };

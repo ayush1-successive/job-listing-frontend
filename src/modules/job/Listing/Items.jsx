@@ -1,7 +1,17 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
-import { Button, List, Popconfirm } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemMeta,
+  Popconfirm,
+} from "../../../components";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  EyeOutlined,
+} from "../../../components/Icons";
 import apiInstance from "../../../services/api";
 import { AuthenticationContext } from "../../user";
 import { ListingContext } from "./Context";
@@ -104,7 +114,7 @@ const ItemsData = () => {
         }}
         dataSource={jobListing}
         renderItem={(item, index) => (
-          <List.Item
+          <ListItem
             key={item.title}
             extra={
               <div>
@@ -148,7 +158,7 @@ const ItemsData = () => {
               </div>
             }
           >
-            <List.Item.Meta
+            <ListItemMeta
               avatar={
                 <img alt="Logo" src={item.logo} className="items-avatar" />
               }
@@ -164,7 +174,7 @@ const ItemsData = () => {
               }
             />
             <p>{`Description: ${item.description}`}</p>
-          </List.Item>
+          </ListItem>
         )}
       />
     </div>

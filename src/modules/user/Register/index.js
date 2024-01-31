@@ -1,1 +1,5 @@
-export { default as Register } from "./Register";
+import { lazy } from "react";
+
+const Register = lazy(() => import("./Register"));
+
+export { Register };

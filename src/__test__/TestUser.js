@@ -38,7 +38,11 @@ class TestUser {
 
       this.testUserId = response.data.data.existingUser._id;
 
-      await axios.delete(`http://localhost:8080/users/${this.testUserId}`);
+      await axios.delete(`http://localhost:8080/users/${this.testUserId}`, {
+        headers: {
+          Authorization: `Bearer ${this.token()}`,
+        },
+      });
       this.testUserId = "";
       this.testUserToken = "";
     } catch (error) {

@@ -28,6 +28,7 @@ describe("Profile Test", () => {
   });
 
   test("Should update summary text", async () => {
+    localStorage.setItem("token", testUser.token());
     const authData = {
       userId: testUser.userId(),
       email: testUser.email(),
@@ -43,7 +44,7 @@ describe("Profile Test", () => {
       );
     });
 
-    await waitFor(() => {
+    await waitFor(async () => {
       const emailElement = screen.getByLabelText("Email");
       expect(emailElement).toHaveValue(testUser.email());
     });
@@ -76,6 +77,7 @@ describe("Profile Test", () => {
   });
 
   test("Should delete user account", async () => {
+    localStorage.setItem("token", testUser.token());
     const authData = {
       userId: testUser.userId(),
       email: testUser.email(),

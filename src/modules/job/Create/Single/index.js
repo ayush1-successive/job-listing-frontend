@@ -1,1 +1,5 @@
-export { default as SingleUpload } from "./Single";
+import { lazy } from "react";
+
+const SingleUpload =  lazy(() => import("./Single"));
+
+export { SingleUpload };

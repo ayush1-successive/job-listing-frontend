@@ -1,20 +1,24 @@
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Form } from "antd";
+import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import {
   Button,
   Col,
   DatePicker,
   Divider,
-  Form,
+  FormItem,
+  FormList,
   Input,
   InputNumber,
   Radio,
+  RadioGroup,
   Row,
   Select,
-  Typography,
-} from "antd";
-import TextArea from "antd/es/input/TextArea";
-import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+  SelectOption,
+  TextArea,
+  Title,
+} from "../../../components";
+import { MinusCircleOutlined, PlusOutlined } from "../../../components/Icons";
 import apiInstance from "../../../services/api";
 import "./form.css";
 
@@ -84,12 +88,12 @@ const JobForm = (props) => {
       scrollToFirstError
     >
       <Divider orientation="left" orientationMargin={20}>
-        <Typography.Title level={5}>Job Details</Typography.Title>
+        <Title level={5}>Job Details</Title>
       </Divider>
 
       <Row gutter={24}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name="title"
             label="Title"
             rules={[
@@ -101,10 +105,10 @@ const JobForm = (props) => {
             hasFeedback
           >
             <Input placeholder="Job Title..." />
-          </Form.Item>
+          </FormItem>
         </Col>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name="company"
             label="Company"
             rules={[
@@ -116,10 +120,10 @@ const JobForm = (props) => {
             hasFeedback
           >
             <Input placeholder="Company Name..." />
-          </Form.Item>
+          </FormItem>
         </Col>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name="jobType"
             label="Job Type"
             rules={[
@@ -130,14 +134,14 @@ const JobForm = (props) => {
             ]}
           >
             <Select placeholder="Select job type">
-              <Select.Option value="Full-time" />
-              <Select.Option value="Part-time" />
-              <Select.Option value="Internship" />
+              <SelectOption value="Full-time" />
+              <SelectOption value="Part-time" />
+              <SelectOption value="Internship" />
             </Select>
-          </Form.Item>
+          </FormItem>
         </Col>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name="industry"
             label="Industry"
             rules={[
@@ -148,43 +152,43 @@ const JobForm = (props) => {
             ]}
           >
             <Input placeholder="Industry..." />
-          </Form.Item>
+          </FormItem>
         </Col>
       </Row>
       <Row gutter={24}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item name="description" label="Description">
+          <FormItem name="description" label="Description">
             <TextArea placeholder="Enter job description..." />
-          </Form.Item>
+          </FormItem>
         </Col>
 
         <Col lg={12} md={8} xs={24}>
-          <Form.Item name={["salary"]} label="Salary">
+          <FormItem name={["salary"]} label="Salary">
             <InputNumber
               className="form-InputNumber"
               placeholder="Salary amount..."
               prefix="₹"
               suffix="annually"
             />
-          </Form.Item>
+          </FormItem>
         </Col>
       </Row>
       <Row gutter={24}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item name="responsibilities" label="Responsibilities">
-            <Form.List name="responsibilities">
+          <FormItem name="responsibilities" label="Responsibilities">
+            <FormList name="responsibilities">
               {(fields, { add, remove }) => {
                 return (
                   <>
                     {fields.map((field, index) => (
                       <div key={field.key} className="form-ListItem">
-                        <Form.Item
+                        <FormItem
                           name={[index]}
                           rules={[{ required: true }]}
                           className="form-InputNumber"
                         >
                           <Input />
-                        </Form.Item>
+                        </FormItem>
 
                         <Button
                           type="danger"
@@ -205,26 +209,26 @@ const JobForm = (props) => {
                   </>
                 );
               }}
-            </Form.List>
-          </Form.Item>
+            </FormList>
+          </FormItem>
         </Col>
       </Row>
       <Row gutter={24}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item name="requirements" label="Requirements">
+          <FormItem name="requirements" label="Requirements">
             <Form.List name="requirements">
               {(fields, { add, remove }) => {
                 return (
                   <>
                     {fields.map((field, index) => (
                       <div key={field.key} className="form-ListItem">
-                        <Form.Item
+                        <FormItem
                           name={[index]}
                           rules={[{ required: true }]}
                           className="form-InputNumber"
                         >
                           <Input />
-                        </Form.Item>
+                        </FormItem>
 
                         <Button
                           type="danger"
@@ -246,34 +250,34 @@ const JobForm = (props) => {
                 );
               }}
             </Form.List>
-          </Form.Item>
+          </FormItem>
         </Col>
       </Row>
 
       <Divider orientation="left" orientationMargin={20}>
-        <Typography.Title level={5}>Office Address</Typography.Title>
+        <Title level={5}>Office Address</Title>
       </Divider>
 
       <Row gutter={10}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item name={["address", "city"]} label="City">
+          <FormItem name={["address", "city"]} label="City">
             <Input />
-          </Form.Item>
+          </FormItem>
         </Col>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item name={["address", "state"]} label="State">
+          <FormItem name={["address", "state"]} label="State">
             <Input />
-          </Form.Item>
+          </FormItem>
         </Col>
       </Row>
 
       <Divider orientation="left" orientationMargin={20}>
-        <Typography.Title level={5}>Qualifications</Typography.Title>
+        <Title level={5}>Qualifications</Title>
       </Divider>
 
       <Row gutter={24}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name={["qualifications", "education"]}
             label="Education"
             rules={[
@@ -284,10 +288,10 @@ const JobForm = (props) => {
             ]}
           >
             <Input placeholder="Education qualification..." />
-          </Form.Item>
+          </FormItem>
         </Col>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name={["qualifications", "skills"]}
             label="Skills"
             rules={[
@@ -298,10 +302,10 @@ const JobForm = (props) => {
             ]}
           >
             <Input placeholder="Required skills..." />
-          </Form.Item>
+          </FormItem>
         </Col>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name={["qualifications", "minExperience"]}
             label="Min Experience"
           >
@@ -309,10 +313,10 @@ const JobForm = (props) => {
               className="form-InputNumber"
               placeholder="Min experience needed(years)..."
             />
-          </Form.Item>
+          </FormItem>
         </Col>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name={["qualifications", "maxExperience"]}
             label="Max Experience"
           >
@@ -320,17 +324,17 @@ const JobForm = (props) => {
               className="form-InputNumber"
               placeholder="Max experience needed(years)..."
             />
-          </Form.Item>
+          </FormItem>
         </Col>
       </Row>
 
       <Divider orientation="left" orientationMargin={20}>
-        <Typography.Title level={5}>Additional Information</Typography.Title>
+        <Title level={5}>Additional Information</Title>
       </Divider>
 
       <Row gutter={24}>
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name="applicationDeadline"
             label="Application Deadline"
             rules={[
@@ -341,11 +345,11 @@ const JobForm = (props) => {
             ]}
           >
             <DatePicker className="form-InputNumber" />
-          </Form.Item>
+          </FormItem>
         </Col>
 
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name="isRemote"
             label="Is Remote"
             rules={[
@@ -355,15 +359,15 @@ const JobForm = (props) => {
               },
             ]}
           >
-            <Radio.Group>
+            <RadioGroup>
               <Radio value={true}>Yes</Radio>
               <Radio value={false}>No</Radio>
-            </Radio.Group>
-          </Form.Item>
+            </RadioGroup>
+          </FormItem>
         </Col>
 
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name="contactEmail"
             label="Contact Email"
             rules={[
@@ -374,11 +378,11 @@ const JobForm = (props) => {
             ]}
           >
             <Input type="email" placeholder="Contact email..." />
-          </Form.Item>
+          </FormItem>
         </Col>
 
         <Col lg={12} md={8} xs={24}>
-          <Form.Item
+          <FormItem
             name="applicationLink"
             label="Application Link"
             rules={[
@@ -389,15 +393,15 @@ const JobForm = (props) => {
             ]}
           >
             <Input placeholder="Application link..." />
-          </Form.Item>
+          </FormItem>
         </Col>
       </Row>
 
-      <Form.Item {...tailFormItemLayout}>
+      <FormItem {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
           {submitMessage}
         </Button>
-      </Form.Item>
+      </FormItem>
     </Form>
   );
 };

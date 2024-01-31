@@ -1,7 +1,15 @@
-import { Card, Descriptions, Divider, Modal, Table, Typography } from "antd";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import {
+  Card,
+  DescriptionItem,
+  Descriptions,
+  Divider,
+  Modal,
+  Table,
+  Title,
+} from "../../../../components";
 import apiInstance from "../../../../services/api";
 import "./bulk.css";
 
@@ -62,47 +70,47 @@ const ErrorDetail = (props) => {
       >
         <Card>
           <Descriptions bordered column={1}>
-            <Descriptions.Item label="Filename" className="bulk-text">
+            <DescriptionItem label="Filename" className="bulk-text">
               {errorData.filename}
-            </Descriptions.Item>
-            <Descriptions.Item label="Status" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="Status" className="bulk-text">
               {errorData.status}
-            </Descriptions.Item>
-            <Descriptions.Item label="Time" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="Time" className="bulk-text">
               {errorData.time}
-            </Descriptions.Item>
-            <Descriptions.Item label="Status" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="Status" className="bulk-text">
               {errorData.status}
-            </Descriptions.Item>
-            <Descriptions.Item label="Successful Entries" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="Successful Entries" className="bulk-text">
               {errorData.successfulEntries}
-            </Descriptions.Item>
-            <Descriptions.Item label="Failed Entries" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="Failed Entries" className="bulk-text">
               {errorData.failedEntries}
-            </Descriptions.Item>
-            <Descriptions.Item label="Entries Completed" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="Entries Completed" className="bulk-text">
               {errorData.entriesCompleted}
-            </Descriptions.Item>
-            <Descriptions.Item label="Total Entries" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="Total Entries" className="bulk-text">
               {errorData.totalEntries}
-            </Descriptions.Item>
-            <Descriptions.Item label="createdAt" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="createdAt" className="bulk-text">
               {errorData.createdAt}
-            </Descriptions.Item>
-            <Descriptions.Item label="updatedAt" className="bulk-text">
+            </DescriptionItem>
+            <DescriptionItem label="updatedAt" className="bulk-text">
               {errorData.updatedAt}
-            </Descriptions.Item>
+            </DescriptionItem>
             {errorData.endedAt && (
-              <Descriptions.Item label="endedAt" className="bulk-text">
+              <DescriptionItem label="endedAt" className="bulk-text">
                 {errorData.endedAt}
-              </Descriptions.Item>
+              </DescriptionItem>
             )}
           </Descriptions>
         </Card>
         {errorData.errorDetails?.length > 0 && (
           <>
             <Divider orientation="left" orientationMargin={20}>
-              <Typography.Title level={4}>Error details</Typography.Title>
+              <Title level={4}>Error details</Title>
             </Divider>
             <Table
               dataSource={errorData.errorDetails}

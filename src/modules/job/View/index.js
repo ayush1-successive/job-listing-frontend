@@ -1,1 +1,5 @@
-export { default as View } from "./View";
+import { lazy } from "react";
+
+const View =  lazy(() => import("./View"));
+
+export { View };

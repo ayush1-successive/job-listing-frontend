@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
@@ -25,19 +25,21 @@ describe("Listing page Test", () => {
   });
 
   afterEach(async () => {
-    await testJobListing.deleteFakeEntry();
+    await testJobListing.deleteFakeEntry(testUser.token());
     await testUser.deleteFakeEntry();
 
     window.history.pushState({}, "", "/");
   });
 
   test("SearchBar test", async () => {
-    render(
-      <BrowserRouter>
-        <Authentication>
-          <Listing />
-        </Authentication>
-      </BrowserRouter>
+    await act(async () =>
+      render(
+        <BrowserRouter>
+          <Authentication>
+            <Listing />
+          </Authentication>
+        </BrowserRouter>
+      )
     );
 
     const searchBar = screen.getByPlaceholderText("Search jobs by Title...");
@@ -53,12 +55,14 @@ describe("Listing page Test", () => {
   });
 
   test("Filters test", async () => {
-    render(
-      <BrowserRouter>
-        <Authentication>
-          <Listing />
-        </Authentication>
-      </BrowserRouter>
+    await act(async () =>
+      render(
+        <BrowserRouter>
+          <Authentication>
+            <Listing />
+          </Authentication>
+        </BrowserRouter>
+      )
     );
 
     const applyButton = screen.getByText("Apply Filters");
@@ -72,7 +76,7 @@ describe("Listing page Test", () => {
   });
 
   test("Navigate to view page (success)", async () => {
-    render(<App />);
+    await act(async () => render(<App />));
 
     await waitFor(async () => {
       expect(screen.getByText(testJobListing.getTitle())).toBeInTheDocument();
@@ -92,12 +96,14 @@ describe("Listing page Test", () => {
 
   test("Navigate to view page (failure)", async () => {
     const targetUrl = `/jobs/${testJobListing.getId()} - 2`;
-    render(
-      <MemoryRouter initialEntries={[targetUrl]}>
-        <Routes>
-          <Route path="/jobs/:jobId" element={<JobView />} />
-        </Routes>
-      </MemoryRouter>
+    await act(async () =>
+      render(
+        <MemoryRouter initialEntries={[targetUrl]}>
+          <Routes>
+            <Route path="/jobs/:jobId" element={<JobView />} />
+          </Routes>
+        </MemoryRouter>
+      )
     );
 
     await waitFor(() => {
@@ -108,7 +114,7 @@ describe("Listing page Test", () => {
 
   test("Should be able to edit job listing", async () => {
     localStorage.setItem("token", testUser.token());
-    render(<App />);
+    await act(async () => render(<App />));
 
     await waitFor(async () => {
       expect(screen.getByText(testJobListing.getTitle())).toBeInTheDocument();
@@ -142,7 +148,7 @@ describe("Listing page Test", () => {
 
   test("Should be able to delete job listing", async () => {
     localStorage.setItem("token", testUser.token());
-    render(<App />);
+    await act(async () => render(<App />));
 
     await waitFor(async () => {
       expect(screen.getByText(testJobListing.getTitle())).toBeInTheDocument();

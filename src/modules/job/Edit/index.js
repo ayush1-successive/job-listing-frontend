@@ -1,1 +1,5 @@
-export { default as Edit } from "./Edit";
+import { lazy } from "react";
+
+const Edit =  lazy(() => import("./Edit"));
+
+export { Edit };

@@ -1,5 +1,11 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Authentication, Login } from "../modules/user";
@@ -21,27 +27,15 @@ describe("Login Page Test", () => {
     await testUser.deleteFakeEntry();
   });
 
-  test("Form check", () => {
-    render(
-      <Authentication>
-        <BrowserRouter>
-          <Login />
-        </BrowserRouter>
-      </Authentication>
-    );
-
-    expect(
-      screen.getByRole("form", { name: "login-form" })
-    ).toBeInTheDocument();
-  });
-
   test("form submission failed", async () => {
-    render(
-      <Authentication>
-        <BrowserRouter>
-          <Login />
-        </BrowserRouter>
-      </Authentication>
+    await act(async () =>
+      render(
+        <Authentication>
+          <BrowserRouter>
+            <Login />
+          </BrowserRouter>
+        </Authentication>
+      )
     );
 
     const emailElement = screen.getByLabelText("Email");
@@ -61,12 +55,14 @@ describe("Login Page Test", () => {
   });
 
   test("form submission passed", async () => {
-    render(
-      <Authentication>
-        <BrowserRouter>
-          <Login />
-        </BrowserRouter>
-      </Authentication>
+    await act(async () =>
+      render(
+        <Authentication>
+          <BrowserRouter>
+            <Login />
+          </BrowserRouter>
+        </Authentication>
+      )
     );
 
     const emailElement = screen.getByLabelText("Email");

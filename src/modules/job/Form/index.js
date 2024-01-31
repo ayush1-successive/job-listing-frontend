@@ -1,1 +1,5 @@
-export { default as JobForm } from "./Form";
+import { lazy } from "react";
+
+const JobForm =  lazy(() => import("./Form"));
+
+export { JobForm };

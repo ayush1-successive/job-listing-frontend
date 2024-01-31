@@ -1,5 +1,5 @@
-import { Button, Select, Slider, Typography } from "antd";
 import { useContext } from "react";
+import { Button, Select, Slider, Title } from "../../../components";
 import { ListingContext } from "./Context";
 import { industry, jobTypes } from "./filtersTypes";
 
@@ -14,8 +14,6 @@ const industryOptions = Object.values(industry).map((value) => ({
   value,
   desc: value,
 }));
-
-const { Title } = Typography;
 
 const JobFilters = () => {
   const { setToFetch, filters, setFilters, setCurrentPage, setItemsPerPage } =

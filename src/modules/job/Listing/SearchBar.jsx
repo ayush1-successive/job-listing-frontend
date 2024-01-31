@@ -1,5 +1,5 @@
-import { Button, Input } from "antd";
 import React, { useContext } from "react";
+import { Search } from "../../../components";
 import { ListingContext } from "./Context";
 
 const SearchBox = () => {
@@ -7,18 +7,14 @@ const SearchBox = () => {
 
   return (
     <div className="filter-searchbar">
-      <Input.Search
+      <Search
         placeholder="Search jobs by Title..."
-        enterButton={
-          <Button onClick={() => setToFetch(true)} type="primary">
-            Find Jobs
-          </Button>
-        }
-        onPressEnter={() => setToFetch(true)}
+        enterButton="Find Jobs"
         size="large"
         onChange={(e) => setFilters({ ...filters, title: e.target.value })}
         style={{ width: "80%" }}
         value={filters.title}
+        onSearch={() => setToFetch(true)}
       />
     </div>
   );

@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Authentication, Register } from "../modules/user";
 import TestUser from "./TestUser";
 import "./setupTests";
+import { act } from "react-dom/test-utils";
 
 describe("Register Page Test", () => {
   let testUser;
@@ -22,12 +23,14 @@ describe("Register Page Test", () => {
   });
 
   test("form submission failed", async () => {
-    render(
-      <Authentication>
-        <BrowserRouter>
-          <Register />
-        </BrowserRouter>
-      </Authentication>
+    await act(async () =>
+      render(
+        <Authentication>
+          <BrowserRouter>
+            <Register />
+          </BrowserRouter>
+        </Authentication>
+      )
     );
 
     const nameElement = screen.getByLabelText("Name");
@@ -60,12 +63,14 @@ describe("Register Page Test", () => {
   test("form submission passed", async () => {
     await testUser.deleteFakeEntry();
 
-    render(
-      <Authentication>
-        <BrowserRouter>
-          <Register />
-        </BrowserRouter>
-      </Authentication>
+    await act(async () =>
+      render(
+        <Authentication>
+          <BrowserRouter>
+            <Register />
+          </BrowserRouter>
+        </Authentication>
+      )
     );
 
     const nameElement = screen.getByLabelText("Name");

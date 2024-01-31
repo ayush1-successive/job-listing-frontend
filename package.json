@@ -46,13 +46,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "axios": "axios/dist/node/axios.cjs",
-      "antd/es/layout/layout": "antd/lib/layout/layout",
-      "antd/es/layout/Sider": "antd/lib/layout/Sider",
-      "antd/es/menu/SubMenu": "antd/lib/menu/SubMenu",
-      "antd/es/input/TextArea": "antd/lib/input/TextArea",
-      "antd/es/upload/Dragger": "antd/lib/upload/Dragger",
-      "antd/es/mentions": "antd/lib/mentions"
+      "axios": "axios/dist/node/axios.cjs"
     }
   }
 }

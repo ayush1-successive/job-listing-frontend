@@ -1,1 +1,5 @@
-export { default as Create } from "./Create";
+import { lazy } from "react";
+
+const Create =  lazy(() => import("./Create"));
+
+export { Create };

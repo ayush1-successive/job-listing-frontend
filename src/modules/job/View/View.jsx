@@ -1,12 +1,20 @@
-import { Card, Descriptions, List, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ErrorPage } from "../../../components";
+import {
+  Card,
+  DescriptionItem,
+  Descriptions,
+  ErrorPage,
+  List,
+  ListItem,
+  Paragraph,
+  Tag,
+  Text,
+  Title,
+} from "../../../components";
 import apiInstance from "../../../services/api";
 import "./view.css";
-
-const { Title, Paragraph, Text } = Typography;
 
 const View = () => {
   const { jobId } = useParams();
@@ -54,24 +62,24 @@ const View = () => {
         className="view-card"
       >
         <Descriptions bordered column={2}>
-          <Descriptions.Item label="Job Type" className="view-text">
+          <DescriptionItem label="Job Type" className="view-text">
             {jobListing.jobType}
-          </Descriptions.Item>
-          <Descriptions.Item label="Industry" className="view-text">
+          </DescriptionItem>
+          <DescriptionItem label="Industry" className="view-text">
             {jobListing.industry}
-          </Descriptions.Item>
-          <Descriptions.Item label="Salary" className="view-text">
+          </DescriptionItem>
+          <DescriptionItem label="Salary" className="view-text">
             {`₹ ${jobListing.salary} lpa`}
-          </Descriptions.Item>
-          <Descriptions.Item label="Location" className="view-text">
+          </DescriptionItem>
+          <DescriptionItem label="Location" className="view-text">
             {jobListing.address}
-          </Descriptions.Item>
-          <Descriptions.Item label="Remote" className="view-text">
+          </DescriptionItem>
+          <DescriptionItem label="Remote" className="view-text">
             {jobListing.isRemote ? "Yes" : "No"}
-          </Descriptions.Item>
-          <Descriptions.Item label="Application Deadline" className="view-text">
+          </DescriptionItem>
+          <DescriptionItem label="Application Deadline" className="view-text">
             {dayjs(jobListing.applicationDeadline).format("Do MMMM, YYYY")}
-          </Descriptions.Item>
+          </DescriptionItem>
         </Descriptions>
 
         <Title level={3}>Job Description</Title>
@@ -79,22 +87,22 @@ const View = () => {
 
         <Title level={3}>Qualifications</Title>
         <Descriptions bordered column={2}>
-          <Descriptions.Item label="Min Education" className="view-text">
+          <DescriptionItem label="Min Education" className="view-text">
             {jobListing.qualifications?.education}
-          </Descriptions.Item>
-          <Descriptions.Item label="Skills" className="view-text">
+          </DescriptionItem>
+          <DescriptionItem label="Skills" className="view-text">
             {jobListing.qualifications?.skills?.map((skill) => (
               <Tag className="view-text" key={`${skill}`}>
                 {skill}
               </Tag>
             ))}
-          </Descriptions.Item>
-          <Descriptions.Item label="Min Experience" className="view-text">
+          </DescriptionItem>
+          <DescriptionItem label="Min Experience" className="view-text">
             {jobListing.qualifications?.minExperience} years
-          </Descriptions.Item>
-          <Descriptions.Item label="Max Experience" className="view-text">
+          </DescriptionItem>
+          <DescriptionItem label="Max Experience" className="view-text">
             {jobListing.qualifications?.maxExperience} years
-          </Descriptions.Item>
+          </DescriptionItem>
         </Descriptions>
 
         {jobListing.requirements?.length > 0 && (
@@ -103,9 +111,9 @@ const View = () => {
             <List
               dataSource={jobListing.requirements}
               renderItem={(requirement) => (
-                <List.Item className="hover-highlight">
+                <ListItem className="hover-highlight">
                   <Text className="view-text">{requirement}</Text>
-                </List.Item>
+                </ListItem>
               )}
             />
           </>
@@ -117,9 +125,9 @@ const View = () => {
             <List
               dataSource={jobListing.responsibilities}
               renderItem={(responsibility) => (
-                <List.Item className="hover-highlight">
+                <ListItem className="hover-highlight">
                   <Text className="view-text">{responsibility}</Text>
-                </List.Item>
+                </ListItem>
               )}
             />
           </>

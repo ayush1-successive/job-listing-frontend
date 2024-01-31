@@ -1,7 +1,14 @@
-import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Layout, Menu } from "antd";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import {
+  Avatar,
+  Content,
+  Footer,
+  Header,
+  Layout,
+  Menu,
+} from "../../../components";
+import { UserOutlined } from "../../../components/Icons";
 import { Create as JobCreate, Listing as JobListing } from "../../job";
 import { AuthenticationContext } from "../../user";
 import { MenuKeyContext } from "../MenuKey/Context";
@@ -16,8 +23,6 @@ const componentMap = {
   jobs: <JobListing />,
   uploads: <JobCreate />,
 };
-
-const { Content, Header, Footer } = Layout;
 
 const Dashboard = () => {
   const { isAuth } = useContext(AuthenticationContext);

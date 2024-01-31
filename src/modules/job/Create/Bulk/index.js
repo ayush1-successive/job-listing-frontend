@@ -1,1 +1,5 @@
-export { default as BulkUpload } from "./Bulk";
+import { lazy } from "react";
+
+const BulkUpload =  lazy(() => import("./Bulk"));
+
+export { BulkUpload };

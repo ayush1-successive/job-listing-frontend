@@ -1,1 +1,5 @@
-export { default as Profile } from "./Profile";
+import { lazy } from "react";
+
+const Profile = lazy(() => import("./Profile"));
+
+export { Profile };

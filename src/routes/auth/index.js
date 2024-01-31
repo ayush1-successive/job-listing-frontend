@@ -1,4 +1,6 @@
-import ProtectedRoute from "./ProtectedRoute";
-import PublicRoute from "./PublicRoute";
+import { lazy } from "react";
+
+const ProtectedRoute = lazy(() => import("./ProtectedRoute"));
+const PublicRoute = lazy(() => import("./PublicRoute"));
 
 export { ProtectedRoute, PublicRoute };

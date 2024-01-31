@@ -1,1 +1,5 @@
-export { default as Listing } from "./Listing";
+import { lazy } from "react";
+
+const Listing =  lazy(() => import("./Listing"));
+
+export { Listing };

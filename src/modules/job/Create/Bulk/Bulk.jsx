@@ -1,21 +1,21 @@
+import { message } from "antd";
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  Col,
+  Dragger,
+  Row,
+  Spin,
+  Statistic,
+  Title,
+  Divider,
+  CountUp,
+} from "../../../../components";
 import {
   ArrowUpOutlined,
   InboxOutlined,
   ReloadOutlined,
-} from "@ant-design/icons";
-import {
-  Card,
-  Col,
-  Divider,
-  Row,
-  Spin,
-  Statistic,
-  Typography,
-  Upload,
-  message,
-} from "antd";
-import React, { useEffect, useState } from "react";
-import CountUp from "react-countup";
+} from "../../../../components/Icons";
 import apiInstance from "../../../../services/api";
 import UploadHistory from "./History";
 import "./bulk.css";
@@ -112,7 +112,7 @@ const BulkUpload = () => {
         </Col>
       </Row>
 
-      <Upload.Dragger {...props}>
+      <Dragger {...props}>
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
         </p>
@@ -123,10 +123,10 @@ const BulkUpload = () => {
           Support for a single or bulk upload. Strictly prohibited from
           uploading banned files.
         </p>
-      </Upload.Dragger>
+      </Dragger>
 
       <Divider orientation="left" orientationMargin={20}>
-        <Typography.Title level={4}>Upload History</Typography.Title>
+        <Title level={4}>Upload History</Title>
       </Divider>
 
       <UploadHistory

@@ -1,11 +1,22 @@
-import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Typography, message } from "antd";
+import { message } from "antd";
 import React, { useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import {
+  Button,
+  Form,
+  FormItem,
+  Input,
+  InputPassword,
+  Text,
+  Title,
+} from "../../../components";
+import {
+  LockOutlined,
+  MailOutlined,
+  UserOutlined,
+} from "../../../components/Icons";
 import apiInstance from "../../../services/api";
 import { AuthenticationContext } from "../Authentication/Context";
-
-const { Text, Link, Title } = Typography;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -65,7 +76,7 @@ const Login = () => {
             layout="vertical"
             requiredMark="optional"
           >
-            <Form.Item
+            <FormItem
               name="email"
               label="Email"
               rules={[
@@ -77,8 +88,8 @@ const Login = () => {
               ]}
             >
               <Input prefix={<MailOutlined />} placeholder="Email" />
-            </Form.Item>
-            <Form.Item
+            </FormItem>
+            <FormItem
               name="password"
               label="Password"
               rules={[
@@ -88,22 +99,22 @@ const Login = () => {
                 },
               ]}
             >
-              <Input.Password
+              <InputPassword
                 prefix={<LockOutlined />}
                 type="password"
                 placeholder="Password"
               />
-            </Form.Item>
+            </FormItem>
 
-            <Form.Item>
+            <FormItem>
               <Button block="true" type="primary" htmlType="submit">
                 Log in
               </Button>
               <div className="form-footer">
                 <Text className="form-text">Don't have an account?</Text>{" "}
-                <Link href="/register">Sign up now</Link>
+                <Link to="/register">Sign up now</Link>
               </div>
-            </Form.Item>
+            </FormItem>
           </Form>
         </div>
       </section>

@@ -1,12 +1,10 @@
 import { FileAddOutlined, UploadOutlined } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
 import React, { useContext } from "react";
+import { Content, Layout, Menu, Sider } from "../../../components";
 import { MenuKeyContext } from "../../navbar";
 import { BulkUpload } from "./Bulk";
 import { SingleUpload } from "./Single";
 import "./create.css";
-
-const { Content, Sider } = Layout;
 
 const Create = () => {
   const { uploadMenuKey, setUploadMenuKey } = useContext(MenuKeyContext);

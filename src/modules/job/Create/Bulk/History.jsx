@@ -1,6 +1,14 @@
-import { Button, Col, List, Row, Statistic } from "antd";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Col,
+  List,
+  ListItem,
+  ListItemMeta,
+  Row,
+  Statistic,
+} from "../../../../components";
 import apiInstance from "../../../../services/api";
 import ErrorDetail from "./ErrorDetail";
 
@@ -92,7 +100,7 @@ const UploadHistory = (props) => {
         }}
         dataSource={uploadHistory}
         renderItem={(item) => (
-          <List.Item
+          <ListItem
             key={item._id}
             extra={
               <div
@@ -110,7 +118,7 @@ const UploadHistory = (props) => {
               </div>
             }
           >
-            <List.Item.Meta
+            <ListItemMeta
               title={`Record ID - ${item._id}`}
               description={
                 <Row gutter={24}>
@@ -153,7 +161,7 @@ const UploadHistory = (props) => {
                 </Row>
               }
             />
-          </List.Item>
+          </ListItem>
         )}
       />
       <ErrorDetail

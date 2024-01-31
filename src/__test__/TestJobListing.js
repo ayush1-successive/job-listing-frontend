@@ -20,11 +20,11 @@ class TestJobListing {
         contactEmail: "test@company.com",
         applicationLink: "web.test-company.com",
         qualifications: {
-          education: 'B. Tech',
+          education: "B. Tech",
           skills: ["C", "C++", "Python"],
         },
         requirements: ["RQ-1", "RQ-2", "RQ-3"],
-        responsibilities: ["RS-1", "RS-2", "RS-3"]
+        responsibilities: ["RS-1", "RS-2", "RS-3"],
       });
 
       this.testJobId = response.data.data._id;
@@ -33,9 +33,13 @@ class TestJobListing {
     }
   };
 
-  deleteFakeEntry = async () => {
+  deleteFakeEntry = async (userToken) => {
     try {
-      await axios.delete(`http://localhost:8080/jobs/${this.testJobId}`);
+      await axios.delete(`http://localhost:8080/jobs/${this.testJobId}`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      });
       this.testJobId = "";
     } catch (error) {
       console.log("error deleting fake job listing!", error.message);

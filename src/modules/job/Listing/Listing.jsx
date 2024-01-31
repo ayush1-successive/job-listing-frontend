@@ -1,12 +1,10 @@
-import { Layout } from "antd";
 import React, { useMemo, useState } from "react";
 import { ListingContext } from "./Context";
+import "./listing.css";
 import JobFilters from "./Filters";
 import ItemsData from "./Items";
 import SearchBar from "./SearchBar";
-import "./listing.css";
-
-const { Content, Sider } = Layout;
+import { Content, Layout, Sider } from "../../../components";
 
 const Listing = () => {
   const [toFetch, setToFetch] = useState(true);
