@@ -1,7 +1,12 @@
+import React, { forwardRef } from "react";
 import { Form } from "antd";
 
-const FormList = (props) => {
-  return <Form.List {...props} />;
-};
+const FormList = forwardRef((props, ref) => {
+  return (
+    <div ref={ref}>
+      <Form.List {...props} />
+    </div>
+  );
+});
 
 export default FormList;

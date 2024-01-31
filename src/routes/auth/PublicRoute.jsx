@@ -17,7 +17,7 @@ const PublicRoute = ({ children }) => {
 
         setIsAuth(true);
       } catch (error) {
-        console.error(error);
+        console.log(error.message);
 
         localStorage.clear();
         setIsAuth(false);

@@ -1,7 +1,12 @@
+import React, { forwardRef } from "react";
 import { Radio } from "antd";
 
-const RadioGroup = (props) => {
-  return <Radio.Group {...props} />;
-};
+const RadioGroup = forwardRef((props, ref) => {
+  return (
+    <div ref={ref}>
+      <Radio.Group {...props} />
+    </div>
+  );
+});
 
 export default RadioGroup;
