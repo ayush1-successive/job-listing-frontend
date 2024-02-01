@@ -1,49 +1,100 @@
 const locations = [
-  { city: "New York City", state: "New York" },
-  { city: "Los Angeles", state: "California" },
-  { city: "Chicago", state: "Illinois" },
-  { city: "Houston", state: "Texas" },
-  { city: "Phoenix", state: "Arizona" },
-  { city: "Philadelphia", state: "Pennsylvania" },
-  { city: "San Antonio", state: "Texas" },
-  { city: "San Diego", state: "California" },
-  { city: "Dallas", state: "Texas" },
-  { city: "San Jose", state: "California" },
-  { city: "Austin", state: "Texas" },
-  { city: "Jacksonville", state: "Florida" },
-  { city: "San Francisco", state: "California" },
-  { city: "Columbus", state: "Ohio" },
-  { city: "Indianapolis", state: "Indiana" },
-  { city: "Seattle", state: "Washington" },
-  { city: "Denver", state: "Colorado" },
-  { city: "Washington", state: "District of Columbia" },
-  { city: "Boston", state: "Massachusetts" },
-  { city: "El Paso", state: "Texas" },
-  { city: "Nashville", state: "Tennessee" },
-  { city: "Detroit", state: "Michigan" },
-  { city: "Oklahoma City", state: "Oklahoma" },
-  { city: "Portland", state: "Oregon" },
-  { city: "Las Vegas", state: "Nevada" },
-  { city: "Memphis", state: "Tennessee" },
-  { city: "Louisville", state: "Kentucky" },
-  { city: "Baltimore", state: "Maryland" },
-  { city: "Milwaukee", state: "Wisconsin" },
-  { city: "Albuquerque", state: "New Mexico" },
-  { city: "Tucson", state: "Arizona" },
-  { city: "Fresno", state: "California" },
-  { city: "Sacramento", state: "California" },
-  { city: "Kansas City", state: "Missouri" },
-  { city: "Long Beach", state: "California" },
-  { city: "Mesa", state: "Arizona" },
-  { city: "Atlanta", state: "Georgia" },
-  { city: "Colorado Springs", state: "Colorado" },
-  { city: "Virginia Beach", state: "Virginia" },
-  { city: "Raleigh", state: "North Carolina" },
-  { city: "Omaha", state: "Nebraska" },
-  { city: "Miami", state: "Florida" },
-  { city: "Oakland", state: "California" },
-  { city: "Minneapolis", state: "Minnesota" },
-  { city: "Tulsa", state: "Oklahoma" },
+  {
+    state: "Alabama",
+    cities: ["Birmingham", "Montgomery", "Mobile", "Huntsville"],
+  },
+  {
+    state: "Alaska",
+    cities: ["Anchorage", "Fairbanks", "Juneau", "Sitka"],
+  },
+  {
+    state: "Arizona",
+    cities: ["Phoenix", "Tucson", "Mesa", "Chandler"],
+  },
+  {
+    state: "Arkansas",
+    cities: ["Little Rock", "Fort Smith", "Fayetteville", "Springdale"],
+  },
+  {
+    state: "California",
+    cities: ["Los Angeles", "San Francisco", "San Diego", "San Jose"],
+  },
+  {
+    state: "Colorado",
+    cities: ["Denver", "Colorado Springs", "Aurora", "Fort Collins"],
+  },
+  {
+    state: "Connecticut",
+    cities: ["Bridgeport", "New Haven", "Hartford", "Stamford"],
+  },
+  {
+    state: "Delaware",
+    cities: ["Wilmington", "Dover", "Newark", "Middletown"],
+  },
+  {
+    state: "Florida",
+    cities: ["Miami", "Orlando", "Tampa", "Jacksonville"],
+  },
+  {
+    state: "Georgia",
+    cities: ["Atlanta", "Augusta", "Columbus", "Savannah"],
+  },
+  {
+    state: "Hawaii",
+    cities: ["Honolulu", "Hilo", "Kailua", "Kahului"],
+  },
+  {
+    state: "Idaho",
+    cities: ["Boise", "Nampa", "Meridian", "Idaho Falls"],
+  },
+  {
+    state: "Illinois",
+    cities: ["Chicago", "Aurora", "Rockford", "Joliet"],
+  },
+  {
+    state: "Indiana",
+    cities: ["Indianapolis", "Fort Wayne", "Evansville", "South Bend"],
+  },
+  {
+    state: "Maharashtra",
+    cities: ["Mumbai", "Pune", "Nagpur", "Nashik"],
+  },
+  {
+    state: "Karnataka",
+    cities: ["Bangalore", "Mysore", "Hubli", "Mangalore"],
+  },
+  {
+    state: "Tamil Nadu",
+    cities: ["Chennai", "Coimbatore", "Madurai", "Salem"],
+  },
+  {
+    state: "Delhi",
+    cities: ["New Delhi", "Noida", "Gurgaon", "Faridabad"],
+  },
+  {
+    state: "Telangana",
+    cities: ["Hyderabad", "Secunderabad", "Warangal", "Karimnagar"],
+  },
+  {
+    state: "Gujarat",
+    cities: ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+  },
+  {
+    state: "West Bengal",
+    cities: ["Kolkata", "Howrah", "Durgapur", "Asansol"],
+  },
+  {
+    state: "Uttar Pradesh",
+    cities: ["Lucknow", "Kanpur", "Agra", "Varanasi"],
+  },
+  {
+    state: "Haryana",
+    cities: ["Gurgaon", "Faridabad", "Rohtak", "Ambala"],
+  },
+  {
+    state: "Punjab",
+    cities: ["Chandigarh", "Ludhiana", "Amritsar", "Jalandhar"],
+  },
 ];
 
 export default locations;

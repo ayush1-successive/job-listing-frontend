@@ -1,6 +1,7 @@
 import { Avatar } from "./Avatar";
 import { Button } from "./Button";
 import { Card } from "./Card";
+import { Cascader } from "./Cascader";
 import { Col } from "./Col";
 import { Content } from "./Content";
 import { CountUp } from "./CountUp";
@@ -46,6 +47,7 @@ export {
   Avatar,
   Button,
   Card,
+  Cascader,
   Col,
   Content,
   CountUp,

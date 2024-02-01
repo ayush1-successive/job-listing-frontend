@@ -104,6 +104,7 @@ const ItemsData = () => {
         size="small"
         className="items-list"
         pagination={{
+          showQuickJumper: true,
           size: "small",
           align: "center",
           pageSize: itemsPerPage,

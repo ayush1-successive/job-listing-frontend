@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ErrorPage } from "../../../components";
 import apiInstance from "../../../services/api";
-import { JobForm } from "../Form";
+import { UploadForm } from "../Form";
 import "./edit.css";
 
 const Edit = () => {
@@ -25,6 +25,13 @@ const Edit = () => {
         const jobListing = response?.data?.data;
         jobListing.applicationDeadline = dayjs(jobListing.applicationDeadline);
 
+        if (jobListing.address) {
+          jobListing.address = [
+            jobListing.address.state,
+            jobListing.address.city,
+          ];
+        }
+
         setJobListing(jobListing);
       } catch (error) {
         setNotFound(true);
@@ -40,7 +47,7 @@ const Edit = () => {
   }
   return (
     <div className="editUploadForm">
-      <JobForm
+      <UploadForm
         formHeading={"Edit JobListing"}
         jobListing={jobListing}
         submitMessage="Update Job"

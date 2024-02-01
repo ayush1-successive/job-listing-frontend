@@ -1,5 +1,5 @@
 import { lazy } from "react";
 
-const JobForm =  lazy(() => import("./Form"));
+const UploadForm =  lazy(() => import("./UploadForm"));
 
-export { JobForm };
+export { UploadForm };

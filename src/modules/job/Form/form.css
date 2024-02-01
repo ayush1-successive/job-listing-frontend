@@ -1,8 +1,16 @@
-
-.form-InputNumber {
-    width: 100%;
+.form-input-number {
+  width: 100%;
 }
 
-.form-ListItem {
-    display: flex;
+.form-subitem {
+  width: 170%;
+}
+
+.form-subitem-icon {
+  margin-left: 150px;
+  font-size: 22px;
+}
+
+.form-item-container {
+  display: flex;
 }

@@ -1,15 +1,18 @@
-import React from "react";
-import { JobForm } from "../../Form";
+import React, { useContext } from "react";
+import { MenuKeyContext } from "../../../navbar";
+import { UploadForm } from "../../Form";
 import "./single.css";
 
 const SingleUpload = () => {
+  const { setDashboardMenuKey } = useContext(MenuKeyContext);
+
   const uploadSuccess = () => {
-    window.location.reload();
+    setDashboardMenuKey("jobs");
   };
 
   return (
     <div className="singleUploadForm">
-      <JobForm
+      <UploadForm
         formHeading={"Create JobListing"}
         submitMessage="Create Job"
         requestMethod="POST"

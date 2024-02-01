@@ -127,12 +127,12 @@ describe("Listing page Test", () => {
     expect(window.location.pathname).toBe(`/edit/${testJobListing.getId()}`);
 
     await waitFor(() => {
-      expect(screen.getByPlaceholderText("Job Title...")).toHaveValue(
+      expect(screen.getByPlaceholderText("Title...")).toHaveValue(
         testJobListing.getTitle()
       );
     });
 
-    const contactElement = screen.getByPlaceholderText("Contact email...");
+    const contactElement = screen.getByPlaceholderText("Contact Email...");
     expect(contactElement).toHaveValue("test@company.com");
 
     fireEvent.change(contactElement, {

@@ -33,7 +33,5 @@ describe("Create Page Test", () => {
     await waitFor(() =>
       expect(screen.getByText("Active Job Listings")).toBeInTheDocument()
     );
-
-    screen.debug(undefined, 100000);
   });
 });
