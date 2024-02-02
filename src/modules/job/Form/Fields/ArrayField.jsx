@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { Button, Col, FormItem, FormList, Input } from "../../../../components";
 import {
   MinusCircleOutlined,
@@ -18,16 +18,18 @@ const ArrayField = (props) => {
             return (
               <>
                 {fields.map((field, index) => (
-                  <div key={field.key}>
-                    <FormItem name={[index]} rules={[{ required: true }]}>
-                      <div className="form-item-container">
-                        <Input className="form-subitem" />
-                        <MinusCircleOutlined
-                          className="form-subitem-icon"
-                          onClick={() => remove(field.name)}
-                        />
-                      </div>
+                  <div key={field.key} className="form-item-container">
+                    <FormItem
+                      name={[index]}
+                      rules={[{ required: true }]}
+                      className="form-subitem"
+                    >
+                      <Input />
                     </FormItem>
+                    <MinusCircleOutlined
+                      onClick={() => remove(field.name)}
+                      className="form-subitem-icon"
+                    />
                   </div>
                 ))}
 

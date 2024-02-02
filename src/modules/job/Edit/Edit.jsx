@@ -47,8 +47,9 @@ const Edit = () => {
   if (notFound) {
     return <ErrorPage />;
   }
+
   return (
-    <div className="editUploadForm">
+    <div className="edit-upload-form">
       <UploadForm
         formHeading={"Edit JobListing"}
         jobListing={jobListing}
