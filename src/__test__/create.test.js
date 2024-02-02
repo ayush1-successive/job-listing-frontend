@@ -10,6 +10,7 @@ import React, { Suspense } from "react";
 import { MenuKey } from "../modules/navbar";
 import { Create as JobCreate } from "../modules/job/Create";
 import "./setupTests";
+import { Authentication } from "../modules/user";
 
 describe("Create Page Test", () => {
   test("Open upload page and navigate to bulk-upload", async () => {
@@ -17,7 +18,9 @@ describe("Create Page Test", () => {
       render(
         <Suspense fallback={<>Loading...</>}>
           <MenuKey>
-            <JobCreate />
+            <Authentication>
+              <JobCreate />
+            </Authentication>
           </MenuKey>
         </Suspense>
       );

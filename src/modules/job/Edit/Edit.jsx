@@ -1,8 +1,9 @@
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ErrorPage } from "../../../components";
 import apiInstance from "../../../services/api";
+import { AuthenticationContext } from "../../user";
 import { UploadForm } from "../Form";
 import "./edit.css";
 
@@ -10,6 +11,7 @@ const Edit = () => {
   const { jobId } = useParams();
   const [jobListing, setJobListing] = useState({});
   const [notFound, setNotFound] = useState(false);
+  const { authData } = useContext(AuthenticationContext);
 
   const navigate = useNavigate();
 
@@ -54,6 +56,7 @@ const Edit = () => {
         requestMethod="PUT"
         requestApi={`http://localhost:8080/jobs/${jobId}`}
         uploadSuccess={uploadSuccess}
+        updatedBy={authData.userId}
       />
     </div>
   );

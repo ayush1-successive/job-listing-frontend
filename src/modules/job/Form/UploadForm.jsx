@@ -37,6 +37,7 @@ const UploadForm = (props) => {
     requestMethod,
     requestApi,
     uploadSuccess,
+    ...rest
   } = props;
 
   const [form] = Form.useForm();
@@ -46,7 +47,7 @@ const UploadForm = (props) => {
   }, [form, jobListing]);
 
   const onFinish = async (values) => {
-    const formData = { ...values };
+    const formData = { ...values, ...rest };
 
     if (formData.address) {
       formData.address = { state: values.address[0], city: values.address[1] };

@@ -31,8 +31,6 @@ const View = () => {
           jobData.address = `${jobData.address.city}, ${jobData.address.state}`;
         }
 
-        console.log(jobData);
-
         setJobListing(jobData);
       } catch (error) {
         setNotFound(true);
