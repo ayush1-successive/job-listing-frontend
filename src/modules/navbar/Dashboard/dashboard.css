@@ -6,7 +6,7 @@
 .dashboard-logo {
   width: 200px;
   font-size: 22px;
-  font-weight: bolder;
+  font-weight: bold;
   color: white;
 }
 
@@ -15,8 +15,13 @@
   min-width: 0;
 }
 
+.dashboard-right-menu {
+  width: 170px;
+}
+
 .dashboard-footer {
   text-align: center;
+  font-weight: bolder;
 }
 
 .dashboard-footer-text {

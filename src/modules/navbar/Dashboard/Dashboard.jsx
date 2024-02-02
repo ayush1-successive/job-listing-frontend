@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   Avatar,
   Content,
+  Dropdown,
   Footer,
   Header,
   Layout,
@@ -38,21 +39,18 @@ const Dashboard = () => {
     window.location.reload();
   };
 
-  const rightMenuItems = [
+  const items = [
     {
-      key: "right-menu",
-      label: <Avatar data-testid="user-icon" icon={<UserOutlined />} />,
-      children: [
-        { key: "profile", label: <Link to="/profile">Profile</Link> },
-        {
-          key: "auth-action",
-          label: isAuth ? (
-            <Link onClick={handleLogout}>Logout</Link>
-          ) : (
-            <Link to="/login">Login</Link>
-          ),
-        },
-      ],
+      label: <Link to="/profile">Profile</Link>,
+      key: "profile",
+    },
+    {
+      label: isAuth ? (
+        <Link onClick={handleLogout}>Logout</Link>
+      ) : (
+        <Link to="/login">Login</Link>
+      ),
+      key: "auth",
     },
   ];
 
@@ -68,7 +66,11 @@ const Dashboard = () => {
           className="dashboard-menu"
           onClick={handleMenuKey}
         />
-        <Menu mode={"horizontal"} items={rightMenuItems} />
+        <Dropdown menu={{ items }} overlayClassName="dashboard-right-menu">
+          <a onClick={(e) => e.preventDefault()}>
+            <Avatar data-testid="user-icon" icon={<UserOutlined />} />
+          </a>
+        </Dropdown>
       </Header>
       <Content>{componentMap[dashboardMenuKey]}</Content>
       <Footer className="dashboard-footer">

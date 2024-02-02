@@ -10,6 +10,7 @@ import { DescriptionItem } from "./DescriptionItem";
 import { Descriptions } from "./Descriptions";
 import { Divider } from "./Divider";
 import { Dragger } from "./Dragger";
+import { Dropdown } from "./Dropdown";
 import { ErrorPage } from "./ErrorPage";
 import { Footer } from "./Footer";
 import { Form } from "./Form";
@@ -56,6 +57,7 @@ export {
   Descriptions,
   Divider,
   Dragger,
+  Dropdown,
   ErrorPage,
   Footer,
   Form,
