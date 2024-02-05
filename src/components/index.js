@@ -28,12 +28,10 @@ import { Menu } from "./Menu";
 import { Modal } from "./Modal";
 import { Paragraph } from "./Paragraph";
 import { Popconfirm } from "./Popconfirm";
-import { Radio } from "./Radio";
 import { RadioGroup } from "./RadioGroup";
 import { Row } from "./Row";
 import { Search } from "./Search";
 import { Select } from "./Select";
-import { SelectOption } from "./SelectOption";
 import { Sider } from "./Sider";
 import { Slider } from "./Slider";
 import { Spin } from "./Spin";
@@ -75,12 +73,10 @@ export {
   Modal,
   Paragraph,
   Popconfirm,
-  Radio,
   RadioGroup,
   Row,
   Search,
   Select,
-  SelectOption,
   Sider,
   Slider,
   Spin,
