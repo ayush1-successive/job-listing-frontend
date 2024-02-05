@@ -10,7 +10,6 @@ import {
   FormList,
   Input,
   Select,
-  SelectOption,
   Text,
   TextArea,
   Title,
@@ -32,6 +31,12 @@ const domainOptions = Object.values(domains).map((value) => ({
   value,
   desc: value,
 }));
+
+const genderOptions = [
+  { label: "Male", value: "male", desc: "male" },
+  { label: "Female", value: "female", desc: "female" },
+  { label: "Other", value: "other", desc: "other" },
+];
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -71,6 +76,7 @@ const Profile = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     const profileData = form.getFieldsValue();
+    delete profileData.email;
 
     try {
       await apiInstance.put(generateUrl(), profileData);
@@ -162,11 +168,11 @@ const Profile = () => {
             </FormItem>
 
             <FormItem name="gender" label="Gender">
-              <Select placeholder="Select gender" allowClear>
-                <SelectOption value="male">male</SelectOption>
-                <SelectOption value="female">female</SelectOption>
-                <SelectOption value="other">other</SelectOption>
-              </Select>
+              <Select
+                placeholder="Select gender"
+                options={genderOptions}
+                allowClear
+              />
             </FormItem>
 
             <FormItem name="phoneNumber" label="Phone Number">
