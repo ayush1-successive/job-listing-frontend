@@ -8,7 +8,7 @@ import { Content, Layout, Sider } from "../../../components";
 
 const Listing = () => {
   const [toFetch, setToFetch] = useState(true);
-  const [filters, setFilters] = useState({ salary: [2, 50] });
+  const [filters, setFilters] = useState({ salary: [200000, 5000000] });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);

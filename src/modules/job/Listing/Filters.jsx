@@ -30,12 +30,12 @@ const JobFilters = () => {
   };
 
   const clearFilters = () => {
-    setFilters({ salary: [2, 50] });
+    setFilters({ salary: [200000, 5000000] });
     resetPage();
     setToFetch(true);
   };
 
-  const formatter = (value) => `${value} lpa`;
+  const formatter = (value) => `${Math.round(value / 100000)} lpa`;
 
   return (
     <div className="filter-container">
@@ -66,11 +66,11 @@ const JobFilters = () => {
       <Title level={5}>Set salary range</Title>
       <Slider
         range
-        marks={{ 2: "2 lpa", 50: "50 lpa" }}
+        marks={{ 200000: "2 lpa", 5000000: "50 lpa" }}
         tooltip={{ formatter }}
         onChange={(value) => setFilters({ ...filters, salary: value })}
-        min={2}
-        max={50}
+        min={200000}
+        max={5000000}
         value={filters.salary}
       />
 

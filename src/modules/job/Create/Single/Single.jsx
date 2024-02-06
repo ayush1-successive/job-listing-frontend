@@ -3,7 +3,6 @@ import apiInstance from "../../../../services/api";
 import { MenuKeyContext } from "../../../navbar";
 import { AuthenticationContext } from "../../../user";
 import { UploadForm } from "../../Form";
-import "./single.css";
 
 const SingleUpload = () => {
   const { setDashboardMenuKey } = useContext(MenuKeyContext);
@@ -33,7 +32,6 @@ const SingleUpload = () => {
   }, []);
 
   return (
-    <div className="singleUploadForm">
       <UploadForm
         formHeading={"Create JobListing"}
         submitMessage="Create Job"
@@ -42,7 +40,6 @@ const SingleUpload = () => {
         uploadSuccess={uploadSuccess}
         createdBy={authData?.userId}
       />
-    </div>
   );
 };
 

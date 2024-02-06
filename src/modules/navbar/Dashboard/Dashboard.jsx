@@ -67,9 +67,9 @@ const Dashboard = () => {
           onClick={handleMenuKey}
         />
         <Dropdown menu={{ items }} overlayClassName="dashboard-right-menu">
-          <a onClick={(e) => e.preventDefault()}>
+          <Link onClick={(e) => e.preventDefault()}>
             <Avatar data-testid="user-icon" icon={<UserOutlined />} />
-          </a>
+          </Link>
         </Dropdown>
       </Header>
       <Content>{componentMap[dashboardMenuKey]}</Content>

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Button, Col, FormItem, FormList, Input } from "../../../../components";
+import { Button, FormItem, FormList, Input } from "../../../../components";
 import {
   MinusCircleOutlined,
   PlusOutlined,
@@ -11,42 +11,40 @@ const ArrayField = (props) => {
   const { name, label, text } = props;
 
   return (
-    <Col lg={12} md={8} xs={24}>
-      <FormItem name={name} label={label}>
-        <FormList name={name}>
-          {(fields, { add, remove }) => {
-            return (
-              <>
-                {fields.map((field, index) => (
-                  <div key={field.key} className="form-item-container">
-                    <FormItem
-                      name={[index]}
-                      rules={[{ required: true }]}
-                      className="form-subitem"
-                    >
-                      <Input />
-                    </FormItem>
-                    <MinusCircleOutlined
-                      onClick={() => remove(field.name)}
-                      className="form-subitem-icon"
-                    />
-                  </div>
-                ))}
+    <FormItem name={name} label={label}>
+      <FormList name={name}>
+        {(fields, { add, remove }) => {
+          return (
+            <>
+              {fields.map((field, index) => (
+                <div key={field.key} className="form-item-container">
+                  <FormItem
+                    name={[index]}
+                    rules={[{ required: true }]}
+                    className="form-subitem"
+                  >
+                    <Input />
+                  </FormItem>
+                  <MinusCircleOutlined
+                    onClick={() => remove(field.name)}
+                    className="form-subitem-icon"
+                  />
+                </div>
+              ))}
 
-                <Button
-                  type="dashed"
-                  block
-                  onClick={() => add()}
-                  icon={<PlusOutlined />}
-                >
-                  {text}
-                </Button>
-              </>
-            );
-          }}
-        </FormList>
-      </FormItem>
-    </Col>
+              <Button
+                type="dashed"
+                block
+                onClick={() => add()}
+                icon={<PlusOutlined />}
+              >
+                {text}
+              </Button>
+            </>
+          );
+        }}
+      </FormList>
+    </FormItem>
   );
 };
 

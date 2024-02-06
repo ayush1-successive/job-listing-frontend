@@ -4,10 +4,10 @@ import { Col, FormItem, InputNumber } from "../../../../components";
 import "../form.css";
 
 const InputNumberField = (props) => {
-  const { lg, name, label, placeholder, prefix, suffix } = props;
+  const { name, label, placeholder, prefix, suffix } = props;
 
   return (
-    <Col lg={lg} md={8} xs={24}>
+    <Col lg={12} md={8} xs={24}>
       <FormItem name={name} label={label}>
         <InputNumber
           className="form-input-number"
@@ -21,7 +21,6 @@ const InputNumberField = (props) => {
 };
 
 InputNumberField.propTypes = {
-  lg: PropTypes.number.isRequired,
   name: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),

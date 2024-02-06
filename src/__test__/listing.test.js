@@ -1,5 +1,11 @@
 import "@testing-library/jest-dom";
-import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import React from "react";
 import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
@@ -79,23 +85,23 @@ describe("Listing page Test", () => {
     await act(async () => render(<App />));
 
     await waitFor(async () => {
-      expect(screen.getByText(testJobListing.getTitle())).toBeInTheDocument();
+      expect(screen.getByText(testJobListing.title())).toBeInTheDocument();
     });
 
     const viewButton = screen.getByTestId("view-button-0");
     expect(viewButton).toBeInTheDocument();
 
     fireEvent.click(viewButton);
-    expect(window.location.pathname).toBe(`/jobs/${testJobListing.getId()}`);
+    expect(window.location.pathname).toBe(`/jobs/${testJobListing.id()}`);
 
     await waitFor(() => {
-      const title = testJobListing.getTitle() + " (Test Company)";
+      const title = testJobListing.title() + " (Test Company)";
       expect(screen.getByText(title)).toBeInTheDocument();
     });
   });
 
   test("Navigate to view page (failure)", async () => {
-    const targetUrl = `/jobs/${testJobListing.getId()} - 2`;
+    const targetUrl = `/jobs/${testJobListing.id()} - 2`;
     await act(async () =>
       render(
         <MemoryRouter initialEntries={[targetUrl]}>
@@ -117,18 +123,18 @@ describe("Listing page Test", () => {
     await act(async () => render(<App />));
 
     await waitFor(async () => {
-      expect(screen.getByText(testJobListing.getTitle())).toBeInTheDocument();
+      expect(screen.getByText(testJobListing.title())).toBeInTheDocument();
     });
 
     const editButton = screen.getByTestId("edit-button-0");
     expect(editButton).toBeInTheDocument();
 
     fireEvent.click(editButton);
-    expect(window.location.pathname).toBe(`/edit/${testJobListing.getId()}`);
+    expect(window.location.pathname).toBe(`/edit/${testJobListing.id()}`);
 
     await waitFor(() => {
       expect(screen.getByPlaceholderText("Title...")).toHaveValue(
-        testJobListing.getTitle()
+        testJobListing.title()
       );
     });
 
@@ -151,7 +157,7 @@ describe("Listing page Test", () => {
     await act(async () => render(<App />));
 
     await waitFor(async () => {
-      expect(screen.getByText(testJobListing.getTitle())).toBeInTheDocument();
+      expect(screen.getByText(testJobListing.title())).toBeInTheDocument();
     });
 
     const deleteButton = screen.getByTestId("delete-button-0");

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Col, FormItem, Select } from "../../../../components";
 
 const SelectField = (props) => {
-  const { lg, name, label, options } = props;
+  const { name, label, options } = props;
 
   const selectOptions = options.map((value) => ({
     label: value,
@@ -12,7 +12,7 @@ const SelectField = (props) => {
   }));
 
   return (
-    <Col lg={lg} md={8} xs={24}>
+    <Col lg={12} md={8} xs={24}>
       <FormItem
         name={name}
         label={label}
@@ -34,7 +34,6 @@ const SelectField = (props) => {
 };
 
 SelectField.propTypes = {
-  lg: PropTypes.number.isRequired,
   name: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),

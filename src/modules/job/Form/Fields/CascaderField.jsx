@@ -3,7 +3,7 @@ import React from "react";
 import { Cascader, Col, FormItem } from "../../../../components";
 
 const CascaderField = (props) => {
-  const { lg, name, label, options } = props;
+  const { name, label, options } = props;
 
   const selectOptions = Object.values(options).map(({ state, cities }) => ({
     label: state,
@@ -13,7 +13,7 @@ const CascaderField = (props) => {
   }));
 
   return (
-    <Col lg={lg} md={8} xs={24}>
+    <Col lg={12} md={8} xs={24}>
       <FormItem name={name} label={label}>
         <Cascader
           options={selectOptions}
@@ -26,7 +26,6 @@ const CascaderField = (props) => {
 };
 
 CascaderField.propTypes = {
-  lg: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,

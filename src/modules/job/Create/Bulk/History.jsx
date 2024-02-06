@@ -99,7 +99,7 @@ const UploadHistory = (props) => {
           pageSizeOptions: [5, 10, 20, 50],
         }}
         dataSource={uploadHistory}
-        renderItem={(item) => (
+        renderItem={(item, index) => (
           <ListItem
             key={item._id}
             extra={
@@ -112,7 +112,7 @@ const UploadHistory = (props) => {
                   height: "100%",
                 }}
               >
-                <Button type="primary" onClick={() => setRecordId(item._id)}>
+                <Button data-testid={`view-button-${index}`} type="primary" onClick={() => setRecordId(item._id)}>
                   View
                 </Button>
               </div>

@@ -19,6 +19,10 @@ class TestJobListing {
         isRemote: true,
         contactEmail: "test@company.com",
         applicationLink: "web.test-company.com",
+        address: {
+          city: "Noida",
+          statte: "Delhi",
+        },
         qualifications: {
           education: "B. Tech",
           skills: ["C", "C++", "Python"],
@@ -29,7 +33,7 @@ class TestJobListing {
 
       this.testJobId = response.data.data._id;
     } catch (error) {
-      console.log("error inserting fake user entry!", error.message);
+      console.log("error inserting fake user entry!", error);
     }
   };
 
@@ -42,15 +46,15 @@ class TestJobListing {
       });
       this.testJobId = "";
     } catch (error) {
-      console.log("error deleting fake job listing!", error.message);
+      console.log("error deleting fake job listing!", error);
     }
   };
 
-  getId = () => {
+  id = () => {
     return this.testJobId;
   };
 
-  getTitle = () => {
+  title = () => {
     return `Test Title - ${this.uniqueSuffix}`;
   };
 }

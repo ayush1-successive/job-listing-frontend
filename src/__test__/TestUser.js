@@ -17,15 +17,29 @@ class TestUser {
         email: this.email(),
       });
 
-      const response = await axios.post(`http://localhost:8080/users/login`, {
+      let response = await axios.post(`http://localhost:8080/users/login`, {
         email: this.email(),
         password: "user@123",
       });
 
       this.testUserId = response.data.data.existingUser._id;
       this.testUserToken = response.data.data.token;
+
+      response = await axios.put(
+        `http://localhost:8080/users/${this.testUserId}`,
+        {
+          name: "Test User",
+          achievements: ["Ac-1", "Ac-2", "Ac-3"],
+          dateOfBirth: new Date("1990-01-01"),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${this.testUserToken}`,
+          },
+        }
+      );
     } catch (error) {
-      console.log("error inserting fake user entry!", error.message);
+      console.log("error inserting fake user entry!", error);
     }
   };
 

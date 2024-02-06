@@ -48,7 +48,7 @@ const ItemsData = () => {
       return newValue ? { ...acc, [key]: newValue } : acc;
     }, {});
 
-    if (query.salary === "2,50") {
+    if (query.salary === "200000,5000000") {
       delete query.salary;
     }
 
