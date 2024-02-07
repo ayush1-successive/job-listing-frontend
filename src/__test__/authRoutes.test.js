@@ -24,12 +24,12 @@ describe("Auth Routes Test", () => {
 
   afterEach(async () => {
     await testUser.deleteFakeEntry();
+
+    window.history.pushState({}, "", "/");
   });
 
   test("Navigate to Profile and then Login when not authenticated", async () => {
-    await act(async () => {
-      render(<App />);
-    });
+    await act(async () => render(<App />));
 
     // Wait for the initial rendering, we are in dashboard page
     await waitFor(() => {
@@ -58,9 +58,7 @@ describe("Auth Routes Test", () => {
     localStorage.setItem("token", testUser.token());
 
     // Render the App component
-    await act(async () => {
-      render(<App />);
-    });
+    await act(async () => render(<App />));
 
     // Wait for the initial rendering, we are in the dashboard page
     await waitFor(() => {
@@ -83,5 +81,30 @@ describe("Auth Routes Test", () => {
     await waitFor(() => {
       expect(screen.getByText("Profile Page")).toBeInTheDocument();
     });
+  });
+
+  test("Should logout successfully from dashboard page", async () => {
+    // Mock authentication by setting a token in localStorage
+    localStorage.setItem("token", testUser.token());
+
+    await act(async () => render(<App />));
+
+    await waitFor(async () => {
+      expect(screen.getByText("JobNest")).toBeInTheDocument();
+    });
+
+    // Find user icon and hover mouse over to
+    // trigger the appearance of the logout menu item
+    const userIcon = screen.getByTestId("user-icon");
+    fireEvent.mouseEnter(userIcon);
+    expect(await screen.findByText("Logout")).toBeInTheDocument();
+
+    const logoutButton = screen.getByText("Logout");
+
+    // Logout
+    fireEvent.click(logoutButton);
+
+    // Token should be deleted
+    expect(localStorage.getItem('token') === null).toBeTruthy();
   });
 });

@@ -18,7 +18,11 @@ class TestBulkUpload {
         failedEntries: 0,
         entriesCompleted: 0,
         totalEntries: 0,
-        errorDetails: ['Error-1', 'Error-2', 'Error-3']
+        errorDetails: [
+          { message: "Error-1", rowNumber: 1 },
+          { message: "Error-2", rowNumber: 2 },
+          { message: "Error-3", rowNumber: 3 },
+        ],
       });
 
       this.testRecordId = response.data.data._id;
