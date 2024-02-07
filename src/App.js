@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
+import { Spin } from "./components";
 import { MenuKey } from "./modules/navbar";
 import { Authentication } from "./modules/user";
 import { Router } from "./routes";
 
 const App = () => (
-  <Suspense fallback={<>Loading...</>}>
+  <Suspense fallback={<Spin fullscreen />}>
     <MenuKey>
       <Authentication>
         <Router />
