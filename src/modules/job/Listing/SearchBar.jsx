@@ -1,37 +1,20 @@
-import React, { useState } from "react";
-import { Input, Button } from "antd";
+import React, { useContext } from "react";
+import { Search } from "../../../components";
+import { ListingContext } from "./Context";
 
-const { Search } = Input;
-
-const SearchBox = ({ onSearch }) => {
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleSearch = () => {
-    onSearch(searchValue);
-  };
+const SearchBox = () => {
+  const { setToFetch, filters, setFilters } = useContext(ListingContext);
 
   return (
-    <div
-      style={{
-        marginBottom: 16,
-        padding: "10px",
-        borderRadius: "8px",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
+    <div className="filter-searchbar">
       <Search
         placeholder="Search jobs by Title..."
-        enterButton={<Button type="primary">Search</Button>}
+        enterButton="Find Jobs"
         size="large"
-        onSearch={handleSearch}
-        onChange={(e) => setSearchValue(e.target.value)}
-        style={{
-          background: "#1890ff",
-          border: "none",
-          borderRadius: "4px",
-          width: "90%",
-        }}
+        onChange={(e) => setFilters({ ...filters, title: e.target.value })}
+        style={{ width: "80%" }}
+        value={filters.title}
+        onSearch={() => setToFetch(true)}
       />
     </div>
   );

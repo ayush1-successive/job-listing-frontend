@@ -1,20 +1,5 @@
-import { Layout } from "antd";
-import { Header } from "antd/es/layout/layout";
-import React from "react";
-import ListingData from "./Data";
-import SearchBar from "./SearchBar";
+import { lazy } from "react";
 
-const JobListing = () => {
-  return (
-    <>
-      <Layout>
-        <Header>
-          <SearchBar />
-        </Header>
-        <ListingData />
-      </Layout>
-    </>
-  );
-};
+const Listing =  lazy(() => import("./Listing"));
 
-export default JobListing;
+export { Listing };
